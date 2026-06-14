@@ -1,0 +1,46 @@
+[
+  {
+    "screenId": "ceac9c10893c4605a7b2ce6bd30d99e7",
+    "title": "Record Editor - ModuleStack Canary",
+    "htmlFile": "ceac9c10893c4605a7b2ce6bd30d99e7.html",
+    "deviceType": "DESKTOP",
+    "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzg5ZmE1MDI3ZWJhNzQyM2JiYTQyZWU5NGQ1YzkxMGQxEgsSBxCN19Wi9xcYAZIBIwoKcHJvamVjdF9pZBIVQhM1MTY0OTM0MjMyMjk5MjA4MzIw&filename=&opi=96797242",
+    "localHtml": "/Users/setrox/projects/modulestack-canary-473d040e/stitch/ceac9c10893c4605a7b2ce6bd30d99e7.html",
+    "surfaceIds": [
+      "SURF_RECORD_EDITOR"
+    ]
+  },
+  {
+    "screenId": "6320b6737c26422c9e88873cdd04c708",
+    "title": "Empty and Error Recovery - ModuleStack Canary",
+    "htmlFile": "6320b6737c26422c9e88873cdd04c708.html",
+    "deviceType": "DESKTOP",
+    "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzA2NWRiMmMxZGE1MzQ0MDFiYmRmMzQzYTU1NTNkMjBjEgsSBxCN19Wi9xcYAZIBIwoKcHJvamVjdF9pZBIVQhM1MTY0OTM0MjMyMjk5MjA4MzIw&filename=&opi=96797242",
+    "localHtml": "/Users/setrox/projects/modulestack-canary-473d040e/stitch/6320b6737c26422c9e88873cdd04c708.html",
+    "surfaceIds": [
+      "SURF_EMPTY_AND_ERROR_RECOVERY"
+    ]
+  },
+  {
+    "screenId": "e62218bb3b604c19912fae3f68b45b89",
+    "title": "Insights - ModuleStack Canary",
+    "htmlFile": "e62218bb3b604c19912fae3f68b45b89.html",
+    "deviceType": "DESKTOP",
+    "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzVhODQ3ZjIwOGNiMDQwYWU5MmI5N2U3YzZhZmM5Zjk1EgsSBxCN19Wi9xcYAZIBIwoKcHJvamVjdF9pZBIVQhM1MTY0OTM0MjMyMjk5MjA4MzIw&filename=&opi=96797242",
+    "localHtml": "/Users/setrox/projects/modulestack-canary-473d040e/stitch/e62218bb3b604c19912fae3f68b45b89.html",
+    "surfaceIds": [
+      "SURF_INSIGHTS"
+    ]
+  },
+  {
+    "screenId": "28e89a9d53d24498a854bf2e76a921ac",
+    "title": "Record Operations - ModuleStack Canary",
+    "htmlFile": "28e89a9d53d24498a854bf2e76a921ac.html",
+    "deviceType": "DESKTOP",
+    "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2RiYTQ0NWFkOTI3NDQwOTBhYjBjODE0MDUzMDY5YjQzEgsSBxCN19Wi9xcYAZIBIwoKcHJvamVjdF9pZBIVQhM1MTY0OTM0MjMyMjk5MjA4MzIw&filename=&opi=96797242",
+    "localHtml": "/Users/setrox/projects/modulestack-canary-473d040e/stitch/28e89a9d53d24498a854bf2e76a921ac.html",
+    "surfaceIds": [
+      "SURF_RECORD_OPERATIONS"
+    ]
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "screenId": "ceac9c10893c4605a7b2ce6bd30d99e7",
+    "name": "Record Editor - ModuleStack Canary",
+    "type": "form",
+    "description": "Record Editor - ModuleStack Canary screen",
+    "surfaceIds": [
+      "SURF_RECORD_EDITOR"
+    ]
+  },
+  {
+    "screenId": "6320b6737c26422c9e88873cdd04c708",
+    "name": "Empty and Error Recovery - ModuleStack Canary",
+    "type": "error",
+    "description": "Empty and Error Recovery - ModuleStack Canary screen",
+    "surfaceIds": [
+      "SURF_EMPTY_AND_ERROR_RECOVERY"
+    ]
+  },
+  {
+    "screenId": "e62218bb3b604c19912fae3f68b45b89",
+    "name": "Insights - ModuleStack Canary",
+    "type": "app-screen",
+    "description": "Insights - ModuleStack Canary screen",
+    "surfaceIds": [
+      "SURF_INSIGHTS"
+    ]
+  },
+  {
+    "screenId": "28e89a9d53d24498a854bf2e76a921ac",
+    "name": "Record Operations - ModuleStack Canary",
+    "type": "app-screen",
+    "description": "Record Operations - ModuleStack Canary screen",
+    "surfaceIds": [
+      "SURF_RECORD_OPERATIONS"
+    ]
+  }
+]

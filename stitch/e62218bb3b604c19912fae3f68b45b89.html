@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ModuleStack Canary - Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#393000",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#e2c62d",
+                        "secondary-container": "#3a4a5f",
+                        "surface-container-high": "#2d2a1f",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface-container-lowest": "#100e06",
+                        "on-primary-container": "#726300",
+                        "outline": "#97917a",
+                        "tertiary-fixed": "#59f8ff",
+                        "inverse-surface": "#e9e2d2",
+                        "primary-container": "#fde047",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-tint": "#e2c62d",
+                        "on-primary-fixed-variant": "#524600",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#cec6ad",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "surface-container-low": "#1e1c12",
+                        "on-secondary": "#213145",
+                        "surface-variant": "#38352a",
+                        "on-secondary-container": "#a9bad3",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "secondary": "#b7c8e1",
+                        "on-primary-fixed": "#211b00",
+                        "inverse-primary": "#6d5e00",
+                        "tertiary-container": "#3bf7ff",
+                        "outline-variant": "#4b4734",
+                        "on-surface": "#e9e2d2",
+                        "primary": "#fffcff",
+                        "inverse-on-surface": "#333026",
+                        "background": "#16130a",
+                        "primary-fixed": "#ffe24c",
+                        "error": "#ffb4ab",
+                        "surface": "#16130a",
+                        "surface-container": "#222016",
+                        "on-background": "#e9e2d2",
+                        "surface-container-highest": "#38352a",
+                        "on-tertiary-container": "#006e72",
+                        "surface-bright": "#3c392e",
+                        "on-tertiary": "#003739",
+                        "on-tertiary-fixed": "#002021",
+                        "surface-dim": "#16130a",
+                        "tertiary": "#f4ffff",
+                        "on-secondary-fixed-variant": "#38485d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "gutter": "12px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "margin": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-sm": ["Inter"],
+                        "label-xs": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "data-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-xs": ["11px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "data-mono": ["13px", {"lineHeight": "16px", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Subtley pulsating glow for active status */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(253, 224, 71, 0); }
+            50% { box-shadow: 0 0 8px 2px rgba(253, 224, 71, 0.2); }
+        }
+        .animate-status-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        /* Conic gradient for donut chart (CSS fallback) */
+        .donut-chart {
+            background: conic-gradient(
+                theme('colors.primary-fixed') 0deg 270deg,
+                theme('colors.error') 270deg 360deg
+            );
+            border-radius: 50%;
+            position: relative;
+        }
+        .donut-hole {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: theme('colors.surface-container-lowest');
+            border-radius: 50%;
+            width: 70%;
+            height: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav aria-label="Main Navigation" class="fixed left-0 top-0 h-full z-50 flex flex-col bg-surface-container dark:bg-surface-container docked w-16 hover:w-64 transition-all duration-300 bg-surface-container-low border-r border-outline-variant flat no shadows group overflow-hidden">
+<!-- Header / Brand -->
+<div class="h-12 flex items-center shrink-0 px-gutter border-b border-outline-variant/30">
+<div class="w-8 flex justify-center shrink-0">
+<div class="w-6 h-6 rounded-sm bg-primary-container flex items-center justify-center">
+<span class="font-headline-sm text-headline-sm font-bold text-on-primary-container">M</span>
+</div>
+</div>
+<div class="ml-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<span class="font-headline-sm text-headline-sm font-bold text-primary-container dark:text-primary-fixed-dim block leading-tight">ModuleStack</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant block uppercase">Canary Ops</span>
+</div>
+</div>
+<!-- Main Tabs -->
+<div class="flex-1 py-sm flex flex-col gap-xs mt-sm">
+<a aria-current="false" class="flex items-center h-10 px-gutter text-on-surface-variant hover:bg-surface-container-highest transition-colors relative" href="#">
+<div class="w-8 flex justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+</div>
+<span class="ml-sm font-label-xs text-label-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 uppercase">Operations</span>
+</a>
+<a aria-current="page" class="flex items-center h-10 px-gutter text-primary-container border-l-2 border-primary-container bg-surface-container-high hover:bg-surface-container-highest transition-colors relative border-l-4 transition-all" href="#">
+<div class="w-8 flex justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="analytics" data-weight="fill">analytics</span>
+</div>
+<span class="ml-sm font-label-xs text-label-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 uppercase">Insights</span>
+</a>
+<a aria-current="false" class="flex items-center h-10 px-gutter text-on-surface-variant hover:bg-surface-container-highest transition-colors relative" href="#">
+<div class="w-8 flex justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit_note">edit_note</span>
+</div>
+<span class="ml-sm font-label-xs text-label-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 uppercase">Editor</span>
+</a>
+</div>
+<!-- CTA (Collapsed to icon, expands on hover) -->
+<div class="px-gutter py-sm">
+<button class="w-full flex items-center h-10 bg-primary-container text-on-primary-container rounded hover:bg-primary-fixed transition-colors">
+<div class="w-8 flex justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+</div>
+<span class="ml-sm font-label-xs text-label-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 uppercase font-bold">Create Record</span>
+</button>
+</div>
+<!-- Footer Tabs -->
+<div class="mt-auto py-sm border-t border-outline-variant/30 flex flex-col gap-xs">
+<a aria-current="false" class="flex items-center h-10 px-gutter text-on-surface-variant hover:bg-surface-container-highest transition-colors relative" href="#">
+<div class="w-8 flex justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+</div>
+<span class="ml-sm font-label-xs text-label-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 uppercase">Settings</span>
+</a>
+<a aria-current="false" class="flex items-center h-10 px-gutter text-on-surface-variant hover:bg-surface-container-highest transition-colors relative" href="#">
+<div class="w-8 flex justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="help_outline">help_outline</span>
+</div>
+<span class="ml-sm font-label-xs text-label-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 uppercase">Support</span>
+</a>
+<!-- User Profile Avatar (Simplified for collapsed state) -->
+<div class="mt-xs px-gutter flex items-center h-10">
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center shrink-0 overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4pkzNB7-wqOBlsmeyZ2X42Pdp6eCez-Hqp8LyVD8kbs3T4fzZATg-KLAqE7Be5Wqn0BWZkbMmPgvigmFKDBctAaAVThGm6XYZIcv3aaU9vku005k4rZ2TrPrObv8zh8APEQ91KTQgKf53ErsdObullE9-qyL7rnFNdZfqxCUkVyRxuOidDA2jjpbR6nPTFYpDEfw3F1TwwihsX9AxCvVjSBwySnxTHB5Sq3RLH1GGHvhJWmLHr-FaSOacRzVJuQgossDe0tOhGn0"/>
+</div>
+<div class="ml-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface leading-tight">Admin User</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">SysOp</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-16 z-40 flex items-center justify-between px-gutter bg-surface dark:bg-surface docked full-width h-12 border-b border-outline-variant bg-surface-container-low flat no shadows">
+<!-- Left: Brand / Title -->
+<div class="flex items-center gap-sm">
+<span class="font-headline-sm text-headline-sm font-black text-primary-container">ModuleStack Canary</span>
+<div class="h-4 w-px bg-outline-variant mx-xs"></div>
+<span class="font-body-md text-body-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="analytics">analytics</span>
+                Insights
+            </span>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-sm">
+<!-- Icon Actions -->
+<button aria-label="notifications" class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary-container hover:bg-surface-container-highest transition-colors rounded-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="account_tree" class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary-container hover:bg-surface-container-highest transition-colors rounded-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_tree">account_tree</span>
+</button>
+<div class="h-4 w-px bg-outline-variant mx-xs"></div>
+<!-- Secondary Action -->
+<button class="h-8 px-sm flex items-center gap-xs border border-outline-variant text-on-surface hover:text-primary-container hover:border-primary-container transition-colors rounded-sm bg-surface-container">
+<span class="material-symbols-outlined text-[16px]" data-icon="download">download</span>
+<span class="font-label-xs text-label-xs uppercase">Export Summary</span>
+</button>
+<!-- Primary Action -->
+<button class="h-8 px-sm flex items-center gap-xs bg-primary-container text-on-primary-container hover:bg-primary-fixed transition-colors rounded-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+<span class="font-label-xs text-label-xs uppercase font-bold">Create Record</span>
+</button>
+<!-- Profile Image (if needed on top bar as well per json) -->
+<div class="ml-xs w-8 h-8 rounded-full border border-outline-variant overflow-hidden shrink-0">
+<img alt="Operator Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgezGlnLhoFLiLtjzgVkmbrjbEWlcI-JNcTLXkhX9Nm-HW1Gl0sEKUaipSIjRKNro3OkQ_q6YjNj2uhsFlhtDwT98DB8IdUNHLZgljtG_ugIGzT__mY1Eaz7SW6OqtOlKfDHJpE2gPKcx1OSyaZhHJQHcJry4bzmCpcFsrLnYEw6t9QRjSdX1D2IxVjKu_W4qaxlQr1ObFyA_Wtwy8VbaD26aVJyAcGQCwEAgWTKnoIaWkjXTiqWryMP07D4Rbf8XPZnIiW5cXN7o"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-16 mt-12 p-gutter md:p-lg bg-surface-container-lowest overflow-y-auto">
+<!-- Page Header -->
+<div class="mb-lg">
+<h1 class="font-display-sm text-display-sm text-on-surface">Health &amp; Trends</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">System-wide pipeline telemetry and actionable diagnostics.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-md">
+<!-- Metrics Row (Top) -->
+<div class="lg:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Metric 1 -->
+<div class="bg-[#1E293B] border border-[#334155] rounded-lg p-sm md:p-md flex flex-col justify-between h-24 hover:border-primary-fixed-dim transition-colors group">
+<div class="flex justify-between items-start">
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase">Uptime (24h)</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" data-icon="check_circle">check_circle</span>
+</div>
+<div class="font-data-mono text-data-mono text-[24px] text-on-surface group-hover:text-tertiary-fixed-dim transition-colors">99.98%</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-[#1E293B] border border-[#334155] rounded-lg p-sm md:p-md flex flex-col justify-between h-24 hover:border-primary-fixed-dim transition-colors group">
+<div class="flex justify-between items-start">
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase">Active Pipelines</span>
+<span class="material-symbols-outlined text-[16px] text-primary-fixed" data-icon="account_tree">account_tree</span>
+</div>
+<div class="font-data-mono text-data-mono text-[24px] text-on-surface group-hover:text-primary-fixed transition-colors">1,402</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-[#1E293B] border border-error/50 rounded-lg p-sm md:p-md flex flex-col justify-between h-24 hover:border-error transition-colors group relative overflow-hidden">
+<div class="absolute inset-0 bg-error/5 pointer-events-none"></div>
+<div class="flex justify-between items-start relative z-10">
+<span class="font-label-xs text-label-xs text-error uppercase flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+                            Failed Builds
+                        </span>
+<span class="material-symbols-outlined text-[16px] text-error" data-icon="error">error</span>
+</div>
+<div class="font-data-mono text-data-mono text-[24px] text-error relative z-10">14</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-[#1E293B] border border-[#334155] rounded-lg p-sm md:p-md flex flex-col justify-between h-24 hover:border-primary-fixed-dim transition-colors group">
+<div class="flex justify-between items-start">
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase">Avg Duration</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="timer">timer</span>
+</div>
+<div class="font-data-mono text-data-mono text-[24px] text-on-surface group-hover:text-primary-fixed-dim transition-colors">4m 12s</div>
+</div>
+</div>
+<!-- Left Column: Donut Chart & Actionable Hints -->
+<div class="lg:col-span-5 flex flex-col gap-gutter lg:gap-md">
+<!-- State Distribution Donut -->
+<div class="bg-[#1E293B] border border-[#334155] rounded-lg p-md flex flex-col h-[300px]">
+<div class="flex justify-between items-center mb-md">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">State Distribution</h2>
+<span class="font-label-xs text-label-xs text-on-surface-variant bg-surface-container px-2 py-1 rounded border border-outline-variant">ALL PIPELINES</span>
+</div>
+<div class="flex-1 flex items-center justify-center relative">
+<!-- CSS Donut Chart -->
+<div class="w-48 h-48 donut-chart">
+<div class="donut-hole bg-[#1E293B]">
+<span class="font-data-mono text-[28px] text-on-surface leading-none">75%</span>
+<span class="font-label-xs text-label-xs text-primary-fixed mt-1">SUCCESS</span>
+</div>
+</div>
+</div>
+<!-- Legend -->
+<div class="mt-4 flex justify-center gap-lg border-t border-[#334155] pt-sm">
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-sm bg-primary-fixed"></div>
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase">Success (1,051)</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-sm bg-error"></div>
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase">Failure (351)</span>
+</div>
+</div>
+</div>
+<!-- Actionable Hints -->
+<div class="bg-[#1E293B] border border-[#334155] rounded-lg flex flex-col overflow-hidden">
+<div class="p-sm md:p-md border-b border-[#334155] bg-surface-container/50 flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed-dim" data-icon="lightbulb">lightbulb</span>
+                            Diagnostics
+                        </h2>
+</div>
+<div class="p-0">
+<ul class="divide-y divide-[#334155]">
+<li class="p-sm md:px-md md:py-sm hover:bg-surface-container-highest transition-colors flex items-start gap-sm group cursor-pointer">
+<span class="material-symbols-outlined text-[16px] text-error mt-0.5 shrink-0" data-icon="warning">warning</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">3 modules missing owners</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Orphaned modules block automated deployment.</p>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant ml-auto opacity-0 group-hover:opacity-100 transition-opacity" data-icon="arrow_forward">arrow_forward</span>
+</li>
+<li class="p-sm md:px-md md:py-sm hover:bg-surface-container-highest transition-colors flex items-start gap-sm group cursor-pointer">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed-dim mt-0.5 shrink-0" data-icon="info">info</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Database pipeline has no recovery notes</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Critical path lacking runbook documentation.</p>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant ml-auto opacity-0 group-hover:opacity-100 transition-opacity" data-icon="arrow_forward">arrow_forward</span>
+</li>
+<li class="p-sm md:px-md md:py-sm hover:bg-surface-container-highest transition-colors flex items-start gap-sm group cursor-pointer">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant mt-0.5 shrink-0" data-icon="schedule">schedule</span>
+<div>
+<p class="font-body-md text-body-md text-on-surface group-hover:text-primary-fixed-dim transition-colors">Cache invalidation running slow</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">p99 duration increased by 400ms.</p>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant ml-auto opacity-0 group-hover:opacity-100 transition-opacity" data-icon="arrow_forward">arrow_forward</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right Column: Recent Activity Log -->
+<div class="lg:col-span-7 flex flex-col h-[calc(100vh-12rem)] min-h-[500px]">
+<div class="bg-[#020617] border border-[#334155] rounded-lg flex flex-col h-full overflow-hidden">
+<!-- Terminal Header -->
+<div class="h-10 border-b border-[#334155] bg-[#0F172A] flex justify-between items-center px-sm">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="terminal">terminal</span>
+<h2 class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">Recent Activity Log</h2>
+</div>
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-[#334155]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-[#334155]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-[#334155]"></div>
+</div>
+</div>
+<!-- Terminal Body -->
+<div class="p-sm font-data-mono text-data-mono text-[#e9e2d2] flex-1 overflow-y-auto space-y-2 selection:bg-primary-fixed selection:text-[#020617]">
+<!-- Log Item 1 (Error) -->
+<div class="flex gap-sm hover:bg-surface-variant/30 p-1 rounded transition-colors group">
+<div class="text-on-surface-variant w-[80px] shrink-0">14:20:05</div>
+<div class="text-error w-[60px] shrink-0 font-bold">[FAIL]</div>
+<div class="flex-1 break-all">
+                                Backend build <span class="text-tertiary-fixed-dim">#8942</span> failed
+                                <div class="text-on-surface-variant text-[11px] mt-1 group-hover:text-[#e9e2d2] transition-colors">
+                                    &gt; ERR_MODULE_NOT_FOUND: Cannot find module 'core-utils'
+                                </div>
+</div>
+</div>
+<!-- Log Item 2 (Success) -->
+<div class="flex gap-sm hover:bg-surface-variant/30 p-1 rounded transition-colors group">
+<div class="text-on-surface-variant w-[80px] shrink-0">14:18:22</div>
+<div class="text-primary-fixed w-[60px] shrink-0 font-bold">[OK]</div>
+<div class="flex-1 break-all">
+                                Auth service deployed to production
+                                <div class="text-on-surface-variant text-[11px] mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    &gt; target: us-east-1, node: auth-04
+                                </div>
+</div>
+</div>
+<!-- Log Item 3 (Info) -->
+<div class="flex gap-sm hover:bg-surface-variant/30 p-1 rounded transition-colors group">
+<div class="text-on-surface-variant w-[80px] shrink-0">14:15:00</div>
+<div class="text-[#b7c8e1] w-[60px] shrink-0 font-bold">[INFO]</div>
+<div class="flex-1 break-all">
+                                Automated database backup initiated
+                            </div>
+</div>
+<!-- Log Item 4 (Success) -->
+<div class="flex gap-sm hover:bg-surface-variant/30 p-1 rounded transition-colors group">
+<div class="text-on-surface-variant w-[80px] shrink-0">14:12:45</div>
+<div class="text-primary-fixed w-[60px] shrink-0 font-bold">[OK]</div>
+<div class="flex-1 break-all">
+                                Frontend static assets synced to CDN
+                            </div>
+</div>
+<!-- Log Item 5 (Warning) -->
+<div class="flex gap-sm hover:bg-surface-variant/30 p-1 rounded transition-colors group">
+<div class="text-on-surface-variant w-[80px] shrink-0">14:05:10</div>
+<div class="text-primary-fixed-dim w-[60px] shrink-0 font-bold">[WARN]</div>
+<div class="flex-1 break-all">
+                                Memory usage spike detected in worker-pool-B
+                                <div class="text-on-surface-variant text-[11px] mt-1 group-hover:text-[#e9e2d2] transition-colors">
+                                    &gt; Usage at 85% capacity, auto-scaling triggered.
+                                </div>
+</div>
+</div>
+<!-- Blinking cursor -->
+<div class="flex gap-sm p-1">
+<div class="w-[80px] shrink-0"></div>
+<div class="w-[60px] shrink-0"></div>
+<div class="flex-1">
+<span class="w-2 h-4 bg-primary-fixed inline-block animate-pulse"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

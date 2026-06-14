@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ModuleStack Canary - Error Recovery</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary": "#393000",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#e2c62d",
+                        "secondary-container": "#3a4a5f",
+                        "surface-container-high": "#2d2a1f",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface-container-lowest": "#100e06",
+                        "on-primary-container": "#726300",
+                        "outline": "#97917a",
+                        "tertiary-fixed": "#59f8ff",
+                        "inverse-surface": "#e9e2d2",
+                        "primary-container": "#fde047",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-tint": "#e2c62d",
+                        "on-primary-fixed-variant": "#524600",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#cec6ad",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "surface-container-low": "#1e1c12",
+                        "on-secondary": "#213145",
+                        "surface-variant": "#38352a",
+                        "on-secondary-container": "#a9bad3",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "secondary": "#b7c8e1",
+                        "on-primary-fixed": "#211b00",
+                        "inverse-primary": "#6d5e00",
+                        "tertiary-container": "#3bf7ff",
+                        "outline-variant": "#4b4734",
+                        "on-surface": "#e9e2d2",
+                        "primary": "#fffcff",
+                        "inverse-on-surface": "#333026",
+                        "background": "#16130a",
+                        "primary-fixed": "#ffe24c",
+                        "error": "#ffb4ab",
+                        "surface": "#16130a",
+                        "surface-container": "#222016",
+                        "on-background": "#e9e2d2",
+                        "surface-container-highest": "#38352a",
+                        "on-tertiary-container": "#006e72",
+                        "surface-bright": "#3c392e",
+                        "on-tertiary": "#003739",
+                        "on-tertiary-fixed": "#002021",
+                        "surface-dim": "#16130a",
+                        "tertiary": "#f4ffff",
+                        "on-secondary-fixed-variant": "#38485d"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "md": "16px",
+                        "gutter": "12px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "margin": "16px",
+                        "base": "4px"
+                    },
+                    fontFamily: {
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-sm": ["Inter"],
+                        "label-xs": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "data-mono": ["JetBrains Mono"]
+                    },
+                    fontSize: {
+                        "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-sm": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-xs": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "data-mono": ["13px", { "lineHeight": "16px", "letterSpacing": "-0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container h-screen overflow-hidden flex">
+<nav class="fixed left-0 top-0 h-full z-50 flex flex-col bg-surface-container w-16 hover:w-64 transition-all duration-300 border-r border-outline-variant group group/nav overflow-hidden">
+<div class="h-[48px] flex items-center px-[16px] shrink-0 border-b border-transparent">
+<div class="w-[32px] h-[32px] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container text-[24px]">developer_board</span>
+</div>
+<div class="ml-[16px] opacity-0 group-hover/nav:opacity-100 transition-opacity duration-200 whitespace-nowrap flex flex-col justify-center">
+<span class="font-headline-sm text-headline-sm font-bold text-primary-container">ModuleStack</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Canary Ops</span>
+</div>
+</div>
+<div class="flex-1 py-[16px] flex flex-col gap-[4px] overflow-y-auto">
+<a class="flex items-center px-[16px] py-[12px] text-primary-container border-l-4 border-primary-container bg-surface-container-high transition-all relative" href="#">
+<span class="material-symbols-outlined shrink-0 text-[20px]">dashboard</span>
+<span class="ml-[16px] font-label-xs text-label-xs opacity-0 group-hover/nav:opacity-100 transition-opacity duration-200 whitespace-nowrap uppercase">Operations</span>
+</a>
+<a class="flex items-center px-[16px] py-[12px] text-on-surface-variant hover:bg-surface-container-highest transition-colors border-l-4 border-transparent relative" href="#">
+<span class="material-symbols-outlined shrink-0 text-[20px]">analytics</span>
+<span class="ml-[16px] font-label-xs text-label-xs opacity-0 group-hover/nav:opacity-100 transition-opacity duration-200 whitespace-nowrap uppercase">Insights</span>
+</a>
+<a class="flex items-center px-[16px] py-[12px] text-on-surface-variant hover:bg-surface-container-highest transition-colors border-l-4 border-transparent relative" href="#">
+<span class="material-symbols-outlined shrink-0 text-[20px]">edit_note</span>
+<span class="ml-[16px] font-label-xs text-label-xs opacity-0 group-hover/nav:opacity-100 transition-opacity duration-200 whitespace-nowrap uppercase">Editor</span>
+</a>
+</div>
+<div class="p-[16px] shrink-0 opacity-0 group-hover/nav:opacity-100 transition-opacity duration-200 whitespace-nowrap border-t border-outline-variant/30">
+<button class="w-full py-[8px] bg-primary-container text-on-primary-container font-label-xs text-label-xs rounded-[4px] hover:brightness-110 transition-all uppercase">
+                Create Record
+            </button>
+</div>
+<div class="py-[8px] border-t border-outline-variant shrink-0 flex flex-col">
+<a class="flex items-center px-[16px] py-[12px] text-on-surface-variant hover:bg-surface-container-highest transition-colors border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined shrink-0 text-[20px]">settings</span>
+<span class="ml-[16px] font-label-xs text-label-xs opacity-0 group-hover/nav:opacity-100 transition-opacity duration-200 whitespace-nowrap uppercase">Settings</span>
+</a>
+<a class="flex items-center px-[16px] py-[12px] text-on-surface-variant hover:bg-surface-container-highest transition-colors border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined shrink-0 text-[20px]">help_outline</span>
+<span class="ml-[16px] font-label-xs text-label-xs opacity-0 group-hover/nav:opacity-100 transition-opacity duration-200 whitespace-nowrap uppercase">Support</span>
+</a>
+</div>
+</nav>
+<div class="flex-1 flex flex-col ml-[64px] min-w-0">
+<header class="h-[48px] shrink-0 z-40 flex items-center justify-between px-gutter bg-surface-container-low border-b border-outline-variant w-full">
+<div class="flex items-center flex-1 min-w-0">
+<div class="font-headline-sm text-headline-sm font-black text-primary-container mr-[32px] truncate shrink-0 hidden sm:block">ModuleStack Canary</div>
+<div class="relative w-full max-w-[320px]">
+<span class="material-symbols-outlined absolute left-[8px] top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full bg-surface-container-highest border border-outline-variant rounded-[4px] pl-[32px] pr-[12px] py-[4px] text-on-surface font-body-sm text-body-sm focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all placeholder:text-on-surface-variant/50" placeholder="Search operational indices..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-[16px] shrink-0 ml-[16px]">
+<div class="flex items-center gap-[8px]">
+<button class="w-[32px] h-[32px] flex items-center justify-center text-on-surface-variant hover:text-primary-container hover:bg-surface-container-highest rounded-[4px] transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="w-[32px] h-[32px] flex items-center justify-center text-on-surface-variant hover:text-primary-container hover:bg-surface-container-highest rounded-[4px] transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_tree</span>
+</button>
+</div>
+<div class="h-[24px] w-px bg-outline-variant"></div>
+<div class="flex items-center gap-[12px]">
+<button class="px-[12px] py-[6px] border border-outline-variant rounded-[4px] font-label-xs text-label-xs text-on-surface hover:border-primary-container hover:text-primary-container transition-colors uppercase">
+                        Export Summary
+                    </button>
+<button class="px-[12px] py-[6px] bg-primary-container text-on-primary-container rounded-[4px] font-label-xs text-label-xs hover:brightness-110 transition-colors uppercase">
+                        Create Record
+                    </button>
+</div>
+<div class="w-[32px] h-[32px] rounded-full bg-secondary-container border border-outline flex items-center justify-center shrink-0 cursor-pointer hover:ring-2 hover:ring-primary-container transition-all">
+<span class="material-symbols-outlined text-on-secondary-container text-[18px]">person</span>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto bg-surface-lowest p-lg sm:p-xl flex items-center justify-center relative">
+<div class="w-full max-w-[640px] bg-surface-container rounded-xl border border-outline-variant shadow-2xl relative overflow-hidden flex flex-col isolate">
+<div class="absolute top-0 left-0 w-full h-1 bg-error z-20"></div>
+<div class="absolute -top-[100px] -right-[100px] w-[300px] h-[300px] bg-error/5 rounded-full blur-[80px] pointer-events-none -z-10"></div>
+<div class="absolute -bottom-[100px] -left-[100px] w-[300px] h-[300px] bg-error/5 rounded-full blur-[80px] pointer-events-none -z-10"></div>
+<div class="p-xl flex flex-col items-start z-10">
+<div class="flex items-center gap-md mb-lg">
+<div class="w-[48px] h-[48px] rounded-lg bg-error-container/20 border border-error/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px] text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<h1 class="font-display-sm text-display-sm text-error tracking-tight">System Connection Failed</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Unable to synchronize with pipeline metadata.</p>
+</div>
+</div>
+<div class="w-full bg-[#020617] border border-outline-variant rounded-lg overflow-hidden mb-xl shadow-inner">
+<div class="px-md py-sm border-b border-outline-variant/50 bg-[#0f172a]/50 flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">terminal</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">lastError.log</span>
+</div>
+<span class="font-label-xs text-label-xs text-error">CRITICAL</span>
+</div>
+<div class="p-md overflow-x-auto">
+<pre class="font-data-mono text-data-mono text-on-surface/80 leading-relaxed"><span class="text-error font-bold">[FATAL]</span> Connection refused (os error 111)
+<span class="text-secondary-fixed-dim">timestamp:</span>  2023-10-27T08:42:15.902Z
+<span class="text-secondary-fixed-dim">target:</span>     tcp://metadata-canary-svc.cluster.local:9092
+<span class="text-secondary-fixed-dim">module:</span>     core::sync::pipeline_fetcher
+<span class="text-secondary-fixed-dim">trace_id:</span>   x-req-88f9a2b1-4c
+
+<span class="text-on-surface-variant">Stacktrace (recent call first):</span>
+  at net::dialer::establish_tcp (dialer.rs:142)
+  at sync::metadata::pull_state (metadata.rs:88)
+  at ops::canary::init_dashboard (dashboard.rs:215)
+  
+<span class="text-error-container">Recommendation: Verify cluster routing rules for 'metadata-canary-svc'.</span></pre>
+</div>
+</div>
+<div class="w-full flex flex-col sm:flex-row items-center gap-md border-t border-outline-variant/50 pt-lg">
+<button class="w-full sm:w-auto px-lg py-[10px] bg-primary-container text-on-primary-container font-label-xs text-label-xs rounded-[4px] hover:bg-primary-fixed transition-colors flex items-center justify-center gap-sm uppercase tracking-wide group">
+<span class="material-symbols-outlined text-[18px] group-hover:-rotate-180 transition-transform duration-500">refresh</span>
+                            Retry Connection
+                        </button>
+<button class="w-full sm:w-auto px-lg py-[10px] border border-outline-variant text-on-surface font-label-xs text-label-xs rounded-[4px] hover:bg-surface-container-highest hover:border-on-surface-variant transition-colors flex items-center justify-center gap-sm uppercase tracking-wide">
+<span class="material-symbols-outlined text-[18px]">note_add</span>
+                            Create Offline Record
+                        </button>
+<div class="flex-1"></div>
+<button class="text-on-surface-variant hover:text-on-surface font-label-xs text-label-xs uppercase tracking-wide underline decoration-outline-variant underline-offset-4 hidden sm:block">
+                            View Docs
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

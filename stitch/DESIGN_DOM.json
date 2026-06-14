@@ -1,0 +1,2466 @@
+{
+  "generatedAt": "2026-06-14T21:56:37.706Z",
+  "screenCount": 4,
+  "screens": {
+    "28e89a9d53d24498a854bf2e76a921ac": {
+      "screenId": "28e89a9d53d24498a854bf2e76a921ac",
+      "materialSymbolsRequired": true,
+      "sections": [
+        {
+          "tag": "nav",
+          "layout": "block",
+          "classes": [
+            "bg-surface-container",
+            "dark:bg-surface-container",
+            "docked",
+            "h-screen",
+            "w-16",
+            "hover:w-64",
+            "transition-all",
+            "duration-300",
+            "bg-surface-container-low",
+            "border-r"
+          ],
+          "childCount": 8
+        },
+        {
+          "tag": "header",
+          "layout": "block",
+          "classes": [
+            "bg-surface",
+            "dark:bg-surface",
+            "docked",
+            "full-width",
+            "top-0",
+            "h-12",
+            "border-b",
+            "border-outline-variant",
+            "bg-surface-container-low",
+            "flat"
+          ],
+          "childCount": 4
+        },
+        {
+          "tag": "main",
+          "layout": "flex-row",
+          "classes": [
+            "h-full",
+            "pt-header",
+            "pl-sidebar",
+            "flex",
+            "transition-all",
+            "duration-300"
+          ],
+          "childCount": 112
+        }
+      ],
+      "buttons": [
+        {
+          "kind": "button",
+          "label": "Create Record",
+          "classes": [
+            "w-full",
+            "bg-primary-container",
+            "text-on-primary-container",
+            "font-label-xs",
+            "text-label-xs",
+            "py-2",
+            "rounded",
+            "flex",
+            "items-center",
+            "justify-center",
+            "gap-2",
+            "hover:bg-primary-fixed",
+            "transition-colors"
+          ],
+          "icon": "add",
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "account_tree",
+          "classes": [
+            "text-on-surface-variant",
+            "hover:text-primary-container",
+            "transition-colors",
+            "w-8",
+            "h-8",
+            "flex",
+            "items-center",
+            "justify-center",
+            "rounded",
+            "hover:bg-surface-container-highest"
+          ],
+          "icon": "account_tree",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "notifications",
+          "classes": [
+            "text-on-surface-variant",
+            "hover:text-primary-container",
+            "transition-colors",
+            "w-8",
+            "h-8",
+            "flex",
+            "items-center",
+            "justify-center",
+            "rounded",
+            "hover:bg-surface-container-highest",
+            "relative"
+          ],
+          "icon": "notifications",
+          "action": "navigate",
+          "expectedBehavior": "navigate:/notifications",
+          "expectedRoute": "/notifications",
+          "routeInferred": true
+        },
+        {
+          "kind": "button",
+          "label": "Export Summary",
+          "classes": [
+            "font-label-xs",
+            "text-label-xs",
+            "text-on-surface-variant",
+            "border",
+            "border-outline-variant",
+            "px-3",
+            "py-1.5",
+            "rounded",
+            "hover:bg-surface-container-highest",
+            "transition-colors"
+          ],
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Create Record",
+          "classes": [
+            "font-label-xs",
+            "text-label-xs",
+            "bg-primary-container",
+            "text-on-primary-container",
+            "px-3",
+            "py-1.5",
+            "rounded",
+            "hover:bg-primary-fixed",
+            "transition-colors",
+            "font-bold"
+          ],
+          "icon": null,
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "close",
+          "classes": [
+            "text-on-surface-variant",
+            "hover:text-on-surface"
+          ],
+          "icon": "close",
+          "action": "dismiss",
+          "expectedBehavior": "close dialog/panel or return to previous state"
+        },
+        {
+          "kind": "button",
+          "label": "Acknowledge",
+          "classes": [
+            "flex-1",
+            "bg-surface",
+            "border",
+            "border-slate",
+            "text-on-surface",
+            "font-label-xs",
+            "text-label-xs",
+            "py-2",
+            "rounded",
+            "hover:bg-surface-container-high",
+            "transition-colors"
+          ],
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Force Retry",
+          "classes": [
+            "flex-1",
+            "bg-primary-container",
+            "text-on-primary-container",
+            "font-label-xs",
+            "text-label-xs",
+            "py-2",
+            "rounded",
+            "hover:bg-primary-fixed",
+            "transition-colors",
+            "font-bold"
+          ],
+          "icon": null,
+          "action": "retry",
+          "expectedBehavior": "retry the failed action and show loading/error feedback"
+        },
+        {
+          "kind": "button",
+          "label": "ModuleStack",
+          "classes": [],
+          "icon": "alarm",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Canary Ops",
+          "classes": [],
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        }
+      ],
+      "inputs": [
+        {
+          "kind": "input",
+          "type": "text",
+          "label": "Search operations...",
+          "placeholder": "Search operations...",
+          "name": "",
+          "classes": [
+            "bg-transparent",
+            "border-none",
+            "text-body-sm",
+            "font-body-sm",
+            "text-on-surface",
+            "w-full",
+            "focus:ring-0",
+            "placeholder:text-on-surface-variant",
+            "h-full",
+            "py-0"
+          ],
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        }
+      ],
+      "navLinks": [
+        {
+          "kind": "link",
+          "label": "Operations",
+          "href": "#",
+          "classes": [
+            "ml-4",
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-300",
+            "whitespace-nowrap"
+          ],
+          "icon": "dashboard",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Insights",
+          "href": "#",
+          "classes": [
+            "ml-4",
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-300",
+            "whitespace-nowrap"
+          ],
+          "icon": "analytics",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Editor",
+          "href": "#",
+          "classes": [
+            "ml-4",
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-300",
+            "whitespace-nowrap"
+          ],
+          "icon": "edit_note",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "settings",
+          "href": "#",
+          "classes": [
+            "ml-4",
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-300",
+            "whitespace-nowrap"
+          ],
+          "icon": "settings",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Support",
+          "href": "#",
+          "classes": [
+            "ml-4",
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-300",
+            "whitespace-nowrap"
+          ],
+          "icon": "help_outline",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        }
+      ],
+      "cards": [],
+      "icons": [
+        "alarm",
+        "dashboard",
+        "analytics",
+        "edit_note",
+        "add",
+        "settings",
+        "help_outline",
+        "search",
+        "account_tree",
+        "notifications",
+        "warning",
+        "sync",
+        "close"
+      ],
+      "images": [
+        {
+          "src": "https://lh3.googleusercontent.com/aida-public/AB6AXuCnCq-ZaG1MpdixY5Vu7m5VGUZnUJzsSwD2C9bbFefBTo0DVg2Wd4F5Gp98j08yQph9a0FJQwx3vB8eZoXlULrz9V1rV7JlxslhCOWEcNsqGfe7vsffLNdalYpXWzhnhmaPY5cInHseNKEEU73z4J",
+          "alt": "User Profile"
+        },
+        {
+          "src": "https://lh3.googleusercontent.com/aida-public/AB6AXuCzmB60K64fIg0gI8BWya5W6m-AOtAI_8NMbZQMhV0vxcrbwZdCql7qDkOa5wurx_noQhTnduNqK3V2N8pT1r7sdm8yGFZaUw_XdMsF1LVCmI6LKTs71zPi4dzI1EUezf7FAl4qKXfYLcmI0YkjG1",
+          "alt": "Operator Avatar"
+        }
+      ],
+      "cssVars": {},
+      "colorPalette": {
+        "on-primary": "#393000",
+        "tertiary-fixed-dim": "#00dce4",
+        "on-error-container": "#ffdad6",
+        "primary-fixed-dim": "#e2c62d",
+        "secondary-container": "#3a4a5f",
+        "surface-container-high": "#2d2a1f",
+        "secondary-fixed": "#d3e4fe",
+        "surface-container-lowest": "#100e06",
+        "on-primary-container": "#726300",
+        "outline": "#97917a",
+        "tertiary-fixed": "#59f8ff",
+        "inverse-surface": "#e9e2d2",
+        "primary-container": "#fde047",
+        "error-container": "#93000a",
+        "on-secondary-fixed": "#0b1c30",
+        "surface-tint": "#e2c62d",
+        "on-primary-fixed-variant": "#524600",
+        "on-error": "#690005",
+        "on-surface-variant": "#cec6ad",
+        "on-tertiary-fixed-variant": "#004f52",
+        "surface-container-low": "#1e1c12",
+        "on-secondary": "#213145",
+        "surface-variant": "#38352a",
+        "on-secondary-container": "#a9bad3",
+        "secondary-fixed-dim": "#b7c8e1",
+        "secondary": "#b7c8e1",
+        "on-primary-fixed": "#211b00",
+        "inverse-primary": "#6d5e00",
+        "tertiary-container": "#3bf7ff",
+        "outline-variant": "#4b4734",
+        "on-surface": "#e9e2d2",
+        "primary": "#fffcff",
+        "inverse-on-surface": "#333026",
+        "background": "#16130a",
+        "primary-fixed": "#ffe24c",
+        "error": "#ffb4ab",
+        "surface": "#16130a",
+        "surface-container": "#222016",
+        "on-background": "#e9e2d2",
+        "surface-container-highest": "#38352a",
+        "on-tertiary-container": "#006e72",
+        "surface-bright": "#3c392e",
+        "on-tertiary": "#003739",
+        "on-tertiary-fixed": "#002021",
+        "surface-dim": "#16130a",
+        "tertiary": "#f4ffff",
+        "on-secondary-fixed-variant": "#38485d"
+      },
+      "fonts": [
+        "Material Symbols Outlined",
+        "Inter",
+        "JetBrains Mono"
+      ],
+      "layoutHints": {
+        "gridCols": 4,
+        "flexDirection": "col",
+        "gap": "2"
+      },
+      "behaviorContract": [
+        {
+          "kind": "link",
+          "label": "Operations",
+          "icon": "dashboard",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Insights",
+          "icon": "analytics",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Editor",
+          "icon": "edit_note",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "settings",
+          "icon": "settings",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Support",
+          "icon": "help_outline",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "button",
+          "label": "Create Record",
+          "icon": "add",
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "account_tree",
+          "icon": "account_tree",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "notifications",
+          "icon": "notifications",
+          "action": "navigate",
+          "route": "/notifications",
+          "expectedBehavior": "navigate:/notifications"
+        },
+        {
+          "kind": "button",
+          "label": "Export Summary",
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Create Record",
+          "icon": null,
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "close",
+          "icon": "close",
+          "action": "dismiss",
+          "expectedBehavior": "close dialog/panel or return to previous state"
+        },
+        {
+          "kind": "button",
+          "label": "Acknowledge",
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Force Retry",
+          "icon": null,
+          "action": "retry",
+          "expectedBehavior": "retry the failed action and show loading/error feedback"
+        },
+        {
+          "kind": "button",
+          "label": "ModuleStack",
+          "icon": "alarm",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Canary Ops",
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "input",
+          "label": "Search operations...",
+          "type": "text",
+          "placeholder": "Search operations...",
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        }
+      ],
+      "tabBar": [
+        {
+          "kind": "button",
+          "label": "ModuleStack",
+          "icon": "alarm",
+          "active": true
+        },
+        {
+          "kind": "button",
+          "label": "Canary Ops",
+          "icon": null,
+          "active": false
+        },
+        {
+          "kind": "link",
+          "label": "Operations",
+          "icon": "dashboard",
+          "route": "#",
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "Insights",
+          "icon": "analytics",
+          "route": "#",
+          "active": false
+        },
+        {
+          "kind": "link",
+          "label": "Editor",
+          "icon": "edit_note",
+          "route": "#",
+          "active": false
+        },
+        {
+          "kind": "button",
+          "label": "Create Record",
+          "icon": "add",
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "settings",
+          "icon": "settings",
+          "route": "#",
+          "active": false
+        },
+        {
+          "kind": "link",
+          "label": "Support",
+          "icon": "help_outline",
+          "route": "#",
+          "active": false
+        }
+      ],
+      "title": "Record Operations - ModuleStack Canary"
+    },
+    "6320b6737c26422c9e88873cdd04c708": {
+      "screenId": "6320b6737c26422c9e88873cdd04c708",
+      "materialSymbolsRequired": true,
+      "sections": [
+        {
+          "tag": "nav",
+          "layout": "flex-col",
+          "classes": [
+            "fixed",
+            "left-0",
+            "top-0",
+            "h-full",
+            "z-50",
+            "flex",
+            "flex-col",
+            "bg-surface-container",
+            "w-16",
+            "hover:w-64"
+          ],
+          "childCount": 6
+        },
+        {
+          "tag": "header",
+          "layout": "flex-row",
+          "classes": [
+            "h-[48px]",
+            "shrink-0",
+            "z-40",
+            "flex",
+            "items-center",
+            "justify-between",
+            "px-gutter",
+            "bg-surface-container-low",
+            "border-b",
+            "border-outline-variant"
+          ],
+          "childCount": 8
+        },
+        {
+          "tag": "main",
+          "layout": "flex-row",
+          "classes": [
+            "flex-1",
+            "overflow-y-auto",
+            "bg-surface-lowest",
+            "p-lg",
+            "sm:p-xl",
+            "flex",
+            "items-center",
+            "justify-center",
+            "relative"
+          ],
+          "childCount": 14
+        }
+      ],
+      "buttons": [
+        {
+          "kind": "button",
+          "label": "Create Record",
+          "classes": [
+            "w-full",
+            "py-[8px]",
+            "bg-primary-container",
+            "text-on-primary-container",
+            "font-label-xs",
+            "text-label-xs",
+            "rounded-[4px]",
+            "hover:brightness-110",
+            "transition-all",
+            "uppercase"
+          ],
+          "icon": null,
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "notifications",
+          "classes": [
+            "w-[32px]",
+            "h-[32px]",
+            "flex",
+            "items-center",
+            "justify-center",
+            "text-on-surface-variant",
+            "hover:text-primary-container",
+            "hover:bg-surface-container-highest",
+            "rounded-[4px]",
+            "transition-colors"
+          ],
+          "icon": "notifications",
+          "action": "navigate",
+          "expectedBehavior": "navigate:/notifications",
+          "expectedRoute": "/notifications",
+          "routeInferred": true
+        },
+        {
+          "kind": "button",
+          "label": "account_tree",
+          "classes": [
+            "w-[32px]",
+            "h-[32px]",
+            "flex",
+            "items-center",
+            "justify-center",
+            "text-on-surface-variant",
+            "hover:text-primary-container",
+            "hover:bg-surface-container-highest",
+            "rounded-[4px]",
+            "transition-colors"
+          ],
+          "icon": "account_tree",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Export Summary",
+          "classes": [
+            "px-[12px]",
+            "py-[6px]",
+            "border",
+            "border-outline-variant",
+            "rounded-[4px]",
+            "font-label-xs",
+            "text-label-xs",
+            "text-on-surface",
+            "hover:border-primary-container",
+            "hover:text-primary-container",
+            "transition-colors",
+            "uppercase"
+          ],
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Retry Connection",
+          "classes": [
+            "w-full",
+            "sm:w-auto",
+            "px-lg",
+            "py-[10px]",
+            "bg-primary-container",
+            "text-on-primary-container",
+            "font-label-xs",
+            "text-label-xs",
+            "rounded-[4px]",
+            "hover:bg-primary-fixed",
+            "transition-colors",
+            "flex",
+            "items-center",
+            "justify-center",
+            "gap-sm",
+            "uppercase",
+            "tracking-wide",
+            "group"
+          ],
+          "icon": "refresh",
+          "action": "retry",
+          "expectedBehavior": "retry the failed action and show loading/error feedback"
+        },
+        {
+          "kind": "button",
+          "label": "Create Offline Record",
+          "classes": [
+            "w-full",
+            "sm:w-auto",
+            "px-lg",
+            "py-[10px]",
+            "border",
+            "border-outline-variant",
+            "text-on-surface",
+            "font-label-xs",
+            "text-label-xs",
+            "rounded-[4px]",
+            "hover:bg-surface-container-highest",
+            "hover:border-on-surface-variant",
+            "transition-colors",
+            "flex",
+            "items-center",
+            "justify-center",
+            "gap-sm",
+            "uppercase",
+            "tracking-wide"
+          ],
+          "icon": "note_add",
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "View Docs",
+          "classes": [
+            "text-on-surface-variant",
+            "hover:text-on-surface",
+            "font-label-xs",
+            "text-label-xs",
+            "uppercase",
+            "tracking-wide",
+            "underline",
+            "decoration-outline-variant",
+            "underline-offset-4",
+            "hidden",
+            "sm:block"
+          ],
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "developer_board",
+          "classes": [],
+          "icon": "developer_board",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "ModuleStack Canary Ops",
+          "classes": [],
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        }
+      ],
+      "inputs": [
+        {
+          "kind": "input",
+          "type": "text",
+          "label": "Search operational indices...",
+          "placeholder": "Search operational indices...",
+          "name": "",
+          "classes": [
+            "w-full",
+            "bg-surface-container-highest",
+            "border",
+            "border-outline-variant",
+            "rounded-[4px]",
+            "pl-[32px]",
+            "pr-[12px]",
+            "py-[4px]",
+            "text-on-surface",
+            "font-body-sm",
+            "text-body-sm",
+            "focus:border-primary-container",
+            "focus:ring-1",
+            "focus:ring-primary-container",
+            "outline-none",
+            "transition-all",
+            "placeholder:text-on-surface-variant/50"
+          ],
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        }
+      ],
+      "navLinks": [
+        {
+          "kind": "link",
+          "label": "Operations",
+          "href": "#",
+          "classes": [
+            "ml-[16px]",
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover/nav:opacity-100",
+            "transition-opacity",
+            "duration-200",
+            "whitespace-nowrap",
+            "uppercase"
+          ],
+          "icon": "dashboard",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Insights",
+          "href": "#",
+          "classes": [
+            "ml-[16px]",
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover/nav:opacity-100",
+            "transition-opacity",
+            "duration-200",
+            "whitespace-nowrap",
+            "uppercase"
+          ],
+          "icon": "analytics",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Editor",
+          "href": "#",
+          "classes": [
+            "ml-[16px]",
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover/nav:opacity-100",
+            "transition-opacity",
+            "duration-200",
+            "whitespace-nowrap",
+            "uppercase"
+          ],
+          "icon": "edit_note",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "settings",
+          "href": "#",
+          "classes": [
+            "ml-[16px]",
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover/nav:opacity-100",
+            "transition-opacity",
+            "duration-200",
+            "whitespace-nowrap",
+            "uppercase"
+          ],
+          "icon": "settings",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Support",
+          "href": "#",
+          "classes": [
+            "ml-[16px]",
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover/nav:opacity-100",
+            "transition-opacity",
+            "duration-200",
+            "whitespace-nowrap",
+            "uppercase"
+          ],
+          "icon": "help_outline",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        }
+      ],
+      "cards": [],
+      "icons": [
+        "developer_board",
+        "dashboard",
+        "analytics",
+        "edit_note",
+        "settings",
+        "help_outline",
+        "search",
+        "notifications",
+        "account_tree",
+        "person",
+        "warning",
+        "terminal",
+        "refresh",
+        "note_add"
+      ],
+      "images": [],
+      "cssVars": {},
+      "colorPalette": {
+        "on-primary": "#393000",
+        "tertiary-fixed-dim": "#00dce4",
+        "on-error-container": "#ffdad6",
+        "primary-fixed-dim": "#e2c62d",
+        "secondary-container": "#3a4a5f",
+        "surface-container-high": "#2d2a1f",
+        "secondary-fixed": "#d3e4fe",
+        "surface-container-lowest": "#100e06",
+        "on-primary-container": "#726300",
+        "outline": "#97917a",
+        "tertiary-fixed": "#59f8ff",
+        "inverse-surface": "#e9e2d2",
+        "primary-container": "#fde047",
+        "error-container": "#93000a",
+        "on-secondary-fixed": "#0b1c30",
+        "surface-tint": "#e2c62d",
+        "on-primary-fixed-variant": "#524600",
+        "on-error": "#690005",
+        "on-surface-variant": "#cec6ad",
+        "on-tertiary-fixed-variant": "#004f52",
+        "surface-container-low": "#1e1c12",
+        "on-secondary": "#213145",
+        "surface-variant": "#38352a",
+        "on-secondary-container": "#a9bad3",
+        "secondary-fixed-dim": "#b7c8e1",
+        "secondary": "#b7c8e1",
+        "on-primary-fixed": "#211b00",
+        "inverse-primary": "#6d5e00",
+        "tertiary-container": "#3bf7ff",
+        "outline-variant": "#4b4734",
+        "on-surface": "#e9e2d2",
+        "primary": "#fffcff",
+        "inverse-on-surface": "#333026",
+        "background": "#16130a",
+        "primary-fixed": "#ffe24c",
+        "error": "#ffb4ab",
+        "surface": "#16130a",
+        "surface-container": "#222016",
+        "on-background": "#e9e2d2",
+        "surface-container-highest": "#38352a",
+        "on-tertiary-container": "#006e72",
+        "surface-bright": "#3c392e",
+        "on-tertiary": "#003739",
+        "on-tertiary-fixed": "#002021",
+        "surface-dim": "#16130a",
+        "tertiary": "#f4ffff",
+        "on-secondary-fixed-variant": "#38485d"
+      },
+      "fonts": [
+        "Inter",
+        "JetBrains Mono",
+        "Material Symbols Outlined"
+      ],
+      "layoutHints": {
+        "flexDirection": "col"
+      },
+      "behaviorContract": [
+        {
+          "kind": "link",
+          "label": "Operations",
+          "icon": "dashboard",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Insights",
+          "icon": "analytics",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Editor",
+          "icon": "edit_note",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "settings",
+          "icon": "settings",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Support",
+          "icon": "help_outline",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "button",
+          "label": "Create Record",
+          "icon": null,
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "notifications",
+          "icon": "notifications",
+          "action": "navigate",
+          "route": "/notifications",
+          "expectedBehavior": "navigate:/notifications"
+        },
+        {
+          "kind": "button",
+          "label": "account_tree",
+          "icon": "account_tree",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Export Summary",
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Retry Connection",
+          "icon": "refresh",
+          "action": "retry",
+          "expectedBehavior": "retry the failed action and show loading/error feedback"
+        },
+        {
+          "kind": "button",
+          "label": "Create Offline Record",
+          "icon": "note_add",
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "View Docs",
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "developer_board",
+          "icon": "developer_board",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "ModuleStack Canary Ops",
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "input",
+          "label": "Search operational indices...",
+          "type": "text",
+          "placeholder": "Search operational indices...",
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        }
+      ],
+      "tabBar": [
+        {
+          "kind": "button",
+          "label": "developer_board",
+          "icon": "developer_board",
+          "active": true
+        },
+        {
+          "kind": "button",
+          "label": "ModuleStack Canary Ops",
+          "icon": null,
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "Operations",
+          "icon": "dashboard",
+          "route": "#",
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "Insights",
+          "icon": "analytics",
+          "route": "#",
+          "active": false
+        },
+        {
+          "kind": "link",
+          "label": "Editor",
+          "icon": "edit_note",
+          "route": "#",
+          "active": false
+        },
+        {
+          "kind": "button",
+          "label": "Create Record",
+          "icon": null,
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "settings",
+          "icon": "settings",
+          "route": "#",
+          "active": false
+        },
+        {
+          "kind": "link",
+          "label": "Support",
+          "icon": "help_outline",
+          "route": "#",
+          "active": false
+        }
+      ],
+      "title": "Empty and Error Recovery - ModuleStack Canary"
+    },
+    "ceac9c10893c4605a7b2ce6bd30d99e7": {
+      "screenId": "ceac9c10893c4605a7b2ce6bd30d99e7",
+      "materialSymbolsRequired": true,
+      "sections": [
+        {
+          "tag": "nav",
+          "layout": "block",
+          "classes": [
+            "bg-surface-container",
+            "dark:bg-surface-container",
+            "docked",
+            "h-screen",
+            "w-16",
+            "hover:w-64",
+            "transition-all",
+            "duration-300",
+            "bg-surface-container-low",
+            "border-r"
+          ],
+          "childCount": 7
+        },
+        {
+          "tag": "header",
+          "layout": "absolute",
+          "classes": [
+            "bg-surface",
+            "dark:bg-surface",
+            "border-b",
+            "border-outline-variant",
+            "bg-surface-container-low",
+            "flat",
+            "no",
+            "shadows",
+            "fixed",
+            "top-0"
+          ],
+          "childCount": 3
+        },
+        {
+          "tag": "main",
+          "layout": "flex-row",
+          "classes": [
+            "flex-1",
+            "mt-12",
+            "p-md",
+            "md:p-lg",
+            "lg:p-xl",
+            "overflow-y-auto"
+          ],
+          "childCount": 23
+        }
+      ],
+      "buttons": [
+        {
+          "kind": "button",
+          "label": "notifications",
+          "classes": [
+            "w-8",
+            "h-8",
+            "rounded",
+            "flex",
+            "items-center",
+            "justify-center",
+            "text-on-surface-variant",
+            "hover:text-primary-container",
+            "transition-colors",
+            "hover:bg-surface-container-highest"
+          ],
+          "icon": "notifications",
+          "action": "navigate",
+          "expectedBehavior": "navigate:/notifications",
+          "expectedRoute": "/notifications",
+          "routeInferred": true
+        },
+        {
+          "kind": "button",
+          "label": "account_tree",
+          "classes": [
+            "w-8",
+            "h-8",
+            "rounded",
+            "flex",
+            "items-center",
+            "justify-center",
+            "text-on-surface-variant",
+            "hover:text-primary-container",
+            "transition-colors",
+            "hover:bg-surface-container-highest"
+          ],
+          "icon": "account_tree",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Create Record",
+          "classes": [
+            "bg-primary-container",
+            "text-on-primary-container",
+            "hover:bg-primary-fixed-dim",
+            "transition-colors",
+            "px-3",
+            "py-1.5",
+            "rounded",
+            "font-label-xs",
+            "text-label-xs",
+            "flex",
+            "items-center",
+            "gap-xs"
+          ],
+          "icon": "add",
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "Export Summary",
+          "classes": [
+            "hidden",
+            "md:flex",
+            "border",
+            "border-outline-variant",
+            "text-on-surface-variant",
+            "hover:text-primary-container",
+            "hover:border-primary-container",
+            "transition-colors",
+            "px-3",
+            "py-1.5",
+            "rounded",
+            "font-label-xs",
+            "text-label-xs",
+            "items-center",
+            "gap-xs"
+          ],
+          "icon": "download",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Cancel",
+          "classes": [
+            "px-4",
+            "py-2",
+            "rounded",
+            "border",
+            "border-[#475569]",
+            "text-on-surface-variant",
+            "hover:text-on-surface",
+            "hover:bg-surface-container-highest",
+            "transition-colors",
+            "font-label-xs",
+            "text-label-xs",
+            "flex",
+            "items-center",
+            "gap-2"
+          ],
+          "icon": "close",
+          "action": "dismiss",
+          "expectedBehavior": "close dialog/panel or return to previous state"
+        },
+        {
+          "kind": "button",
+          "label": "Record",
+          "classes": [
+            "px-4",
+            "py-2",
+            "rounded",
+            "bg-primary-container",
+            "text-on-primary-container",
+            "font-label-xs",
+            "text-label-xs",
+            "hover:bg-primary-fixed-dim",
+            "transition-all",
+            "flex",
+            "items-center",
+            "gap-2",
+            "shadow-[0_0_15px_rgba(253,224,71,0.1)]",
+            "hover:shadow-[0_0_20px_rgba(253,224,71,0.2)]"
+          ],
+          "icon": "save",
+          "action": "form-submit",
+          "expectedBehavior": "validate inputs and submit/apply changes"
+        },
+        {
+          "kind": "button",
+          "label": "ModuleStack Canary Ops",
+          "classes": [],
+          "icon": "battery_alert",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "person",
+          "classes": [],
+          "icon": "person",
+          "action": "navigate",
+          "expectedRoute": "/profile",
+          "routeInferred": true,
+          "expectedBehavior": "navigate:/profile"
+        },
+        {
+          "kind": "button",
+          "label": "Operator SysAdmin",
+          "classes": [],
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        }
+      ],
+      "inputs": [
+        {
+          "kind": "input",
+          "type": "text",
+          "label": "e.g. auth-service-v2",
+          "placeholder": "e.g. auth-service-v2",
+          "name": "moduleName",
+          "classes": [
+            "form-input",
+            "error",
+            "w-full",
+            "rounded",
+            "px-sm",
+            "py-2",
+            "text-on-surface",
+            "font-body-sm"
+          ],
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        },
+        {
+          "kind": "input",
+          "type": "select",
+          "label": "moduleType",
+          "placeholder": "",
+          "name": "moduleType",
+          "classes": [
+            "form-input",
+            "w-full",
+            "rounded",
+            "px-sm",
+            "py-2",
+            "text-on-surface",
+            "font-body-sm",
+            "appearance-none",
+            "bg-[#1E293B]",
+            "cursor-pointer"
+          ],
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        },
+        {
+          "kind": "input",
+          "type": "email",
+          "label": "team@company.com",
+          "placeholder": "team@company.com",
+          "name": "moduleOwner",
+          "classes": [
+            "form-input",
+            "w-full",
+            "rounded",
+            "px-sm",
+            "py-2",
+            "text-on-surface",
+            "font-body-sm"
+          ],
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        },
+        {
+          "kind": "input",
+          "type": "range",
+          "label": "healthThreshold",
+          "placeholder": "",
+          "name": "healthThreshold",
+          "classes": [
+            "w-full",
+            "accent-primary-container",
+            "h-1",
+            "bg-[#334155]",
+            "rounded-lg",
+            "appearance-none",
+            "cursor-pointer"
+          ],
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        },
+        {
+          "kind": "input",
+          "type": "textarea",
+          "label": "{\\n  \\",
+          "placeholder": "{\\n  \\",
+          "name": "routingLogic",
+          "classes": [
+            "form-input",
+            "w-full",
+            "rounded",
+            "px-sm",
+            "py-2",
+            "text-on-surface",
+            "font-data-mono",
+            "text-data-mono",
+            "text-[12px]",
+            "leading-relaxed",
+            "resize-y"
+          ],
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        },
+        {
+          "kind": "input",
+          "type": "textarea",
+          "label": "Steps to manually recover if automated failover fails...",
+          "placeholder": "Steps to manually recover if automated failover fails...",
+          "name": "recoveryNotes",
+          "classes": [
+            "form-input",
+            "w-full",
+            "rounded",
+            "px-sm",
+            "py-2",
+            "text-on-surface",
+            "font-body-sm",
+            "resize-y"
+          ],
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        }
+      ],
+      "navLinks": [
+        {
+          "kind": "link",
+          "label": "Operations",
+          "href": "#",
+          "classes": [
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-300",
+            "whitespace-nowrap"
+          ],
+          "icon": "dashboard",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Insights",
+          "href": "#",
+          "classes": [
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-300",
+            "whitespace-nowrap"
+          ],
+          "icon": "analytics",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Editor",
+          "href": "#",
+          "classes": [
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-300",
+            "whitespace-nowrap",
+            "font-bold"
+          ],
+          "icon": "edit_note",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "settings",
+          "href": "#",
+          "classes": [
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-300",
+            "whitespace-nowrap"
+          ],
+          "icon": "settings",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Support",
+          "href": "#",
+          "classes": [
+            "font-label-xs",
+            "text-label-xs",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-300",
+            "whitespace-nowrap"
+          ],
+          "icon": "help_outline",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        }
+      ],
+      "cards": [],
+      "icons": [
+        "battery_alert",
+        "dashboard",
+        "analytics",
+        "edit_note",
+        "settings",
+        "help_outline",
+        "person",
+        "notifications",
+        "account_tree",
+        "add",
+        "download",
+        "dns",
+        "error",
+        "arrow_drop_down",
+        "route",
+        "description",
+        "close",
+        "save"
+      ],
+      "images": [],
+      "cssVars": {},
+      "colorPalette": {
+        "on-primary": "#393000",
+        "tertiary-fixed-dim": "#00dce4",
+        "on-error-container": "#ffdad6",
+        "primary-fixed-dim": "#e2c62d",
+        "secondary-container": "#3a4a5f",
+        "surface-container-high": "#2d2a1f",
+        "secondary-fixed": "#d3e4fe",
+        "surface-container-lowest": "#100e06",
+        "on-primary-container": "#726300",
+        "outline": "#97917a",
+        "tertiary-fixed": "#59f8ff",
+        "inverse-surface": "#e9e2d2",
+        "primary-container": "#fde047",
+        "error-container": "#93000a",
+        "on-secondary-fixed": "#0b1c30",
+        "surface-tint": "#e2c62d",
+        "on-primary-fixed-variant": "#524600",
+        "on-error": "#690005",
+        "on-surface-variant": "#cec6ad",
+        "on-tertiary-fixed-variant": "#004f52",
+        "surface-container-low": "#1e1c12",
+        "on-secondary": "#213145",
+        "surface-variant": "#38352a",
+        "on-secondary-container": "#a9bad3",
+        "secondary-fixed-dim": "#b7c8e1",
+        "secondary": "#b7c8e1",
+        "on-primary-fixed": "#211b00",
+        "inverse-primary": "#6d5e00",
+        "tertiary-container": "#3bf7ff",
+        "outline-variant": "#4b4734",
+        "on-surface": "#e9e2d2",
+        "primary": "#fffcff",
+        "inverse-on-surface": "#333026",
+        "background": "#16130a",
+        "primary-fixed": "#ffe24c",
+        "error": "#ffb4ab",
+        "surface": "#16130a",
+        "surface-container": "#222016",
+        "on-background": "#e9e2d2",
+        "surface-container-highest": "#38352a",
+        "on-tertiary-container": "#006e72",
+        "surface-bright": "#3c392e",
+        "on-tertiary": "#003739",
+        "on-tertiary-fixed": "#002021",
+        "surface-dim": "#16130a",
+        "tertiary": "#f4ffff",
+        "on-secondary-fixed-variant": "#38485d"
+      },
+      "fonts": [
+        "Inter",
+        "JetBrains Mono",
+        "Material Symbols Outlined"
+      ],
+      "layoutHints": {
+        "gridCols": 1,
+        "flexDirection": "col",
+        "gap": "2"
+      },
+      "behaviorContract": [
+        {
+          "kind": "link",
+          "label": "Operations",
+          "icon": "dashboard",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Insights",
+          "icon": "analytics",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Editor",
+          "icon": "edit_note",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "settings",
+          "icon": "settings",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Support",
+          "icon": "help_outline",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "button",
+          "label": "notifications",
+          "icon": "notifications",
+          "action": "navigate",
+          "route": "/notifications",
+          "expectedBehavior": "navigate:/notifications"
+        },
+        {
+          "kind": "button",
+          "label": "account_tree",
+          "icon": "account_tree",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Create Record",
+          "icon": "add",
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "Export Summary",
+          "icon": "download",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Cancel",
+          "icon": "close",
+          "action": "dismiss",
+          "expectedBehavior": "close dialog/panel or return to previous state"
+        },
+        {
+          "kind": "button",
+          "label": "Record",
+          "icon": "save",
+          "action": "form-submit",
+          "expectedBehavior": "validate inputs and submit/apply changes"
+        },
+        {
+          "kind": "button",
+          "label": "ModuleStack Canary Ops",
+          "icon": "battery_alert",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "person",
+          "icon": "person",
+          "action": "navigate",
+          "route": "/profile",
+          "expectedBehavior": "navigate:/profile"
+        },
+        {
+          "kind": "button",
+          "label": "Operator SysAdmin",
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "input",
+          "label": "e.g. auth-service-v2",
+          "type": "text",
+          "placeholder": "e.g. auth-service-v2",
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        },
+        {
+          "kind": "input",
+          "label": "moduleType",
+          "type": "select",
+          "placeholder": "",
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        },
+        {
+          "kind": "input",
+          "label": "team@company.com",
+          "type": "email",
+          "placeholder": "team@company.com",
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        },
+        {
+          "kind": "input",
+          "label": "healthThreshold",
+          "type": "range",
+          "placeholder": "",
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        },
+        {
+          "kind": "input",
+          "label": "{\\n  \\",
+          "type": "textarea",
+          "placeholder": "{\\n  \\",
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        },
+        {
+          "kind": "input",
+          "label": "Steps to manually recover if automated failover fails...",
+          "type": "textarea",
+          "placeholder": "Steps to manually recover if automated failover fails...",
+          "expectedBehavior": "controlled value with onChange; validation if required by PRD"
+        }
+      ],
+      "tabBar": [
+        {
+          "kind": "button",
+          "label": "ModuleStack Canary Ops",
+          "icon": "battery_alert",
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "Operations",
+          "icon": "dashboard",
+          "route": "#",
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "Insights",
+          "icon": "analytics",
+          "route": "#",
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "Editor",
+          "icon": "edit_note",
+          "route": "#",
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "settings",
+          "icon": "settings",
+          "route": "#",
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "Support",
+          "icon": "help_outline",
+          "route": "#",
+          "active": true
+        },
+        {
+          "kind": "button",
+          "label": "person",
+          "icon": "person",
+          "active": false
+        },
+        {
+          "kind": "button",
+          "label": "Operator SysAdmin",
+          "icon": null,
+          "active": false
+        }
+      ],
+      "title": "Record Editor - ModuleStack Canary"
+    },
+    "e62218bb3b604c19912fae3f68b45b89": {
+      "screenId": "e62218bb3b604c19912fae3f68b45b89",
+      "materialSymbolsRequired": true,
+      "sections": [
+        {
+          "tag": "nav",
+          "layout": "flex-col",
+          "classes": [
+            "fixed",
+            "left-0",
+            "top-0",
+            "h-full",
+            "z-50",
+            "flex",
+            "flex-col",
+            "bg-surface-container",
+            "dark:bg-surface-container",
+            "docked"
+          ],
+          "childCount": 16
+        },
+        {
+          "tag": "header",
+          "layout": "flex-row",
+          "classes": [
+            "fixed",
+            "top-0",
+            "right-0",
+            "left-16",
+            "z-40",
+            "flex",
+            "items-center",
+            "justify-between",
+            "px-gutter",
+            "bg-surface"
+          ],
+          "childCount": 5
+        },
+        {
+          "tag": "main",
+          "layout": "flex-row",
+          "classes": [
+            "flex-1",
+            "ml-16",
+            "mt-12",
+            "p-gutter",
+            "md:p-lg",
+            "bg-surface-container-lowest",
+            "overflow-y-auto"
+          ],
+          "childCount": 72
+        }
+      ],
+      "buttons": [
+        {
+          "kind": "button",
+          "label": "Create Record",
+          "classes": [
+            "w-full",
+            "flex",
+            "items-center",
+            "h-10",
+            "bg-primary-container",
+            "text-on-primary-container",
+            "rounded",
+            "hover:bg-primary-fixed",
+            "transition-colors"
+          ],
+          "icon": "add",
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "notifications",
+          "classes": [
+            "w-8",
+            "h-8",
+            "flex",
+            "items-center",
+            "justify-center",
+            "text-on-surface-variant",
+            "hover:text-primary-container",
+            "hover:bg-surface-container-highest",
+            "transition-colors",
+            "rounded-sm"
+          ],
+          "icon": "notifications",
+          "action": "navigate",
+          "expectedBehavior": "navigate:/notifications",
+          "expectedRoute": "/notifications",
+          "routeInferred": true
+        },
+        {
+          "kind": "button",
+          "label": "account_tree",
+          "classes": [
+            "w-8",
+            "h-8",
+            "flex",
+            "items-center",
+            "justify-center",
+            "text-on-surface-variant",
+            "hover:text-primary-container",
+            "hover:bg-surface-container-highest",
+            "transition-colors",
+            "rounded-sm"
+          ],
+          "icon": "account_tree",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Export Summary",
+          "classes": [
+            "h-8",
+            "px-sm",
+            "flex",
+            "items-center",
+            "gap-xs",
+            "border",
+            "border-outline-variant",
+            "text-on-surface",
+            "hover:text-primary-container",
+            "hover:border-primary-container",
+            "transition-colors",
+            "rounded-sm",
+            "bg-surface-container"
+          ],
+          "icon": "download",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "M",
+          "classes": [],
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "ModuleStack Canary Ops",
+          "classes": [],
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "add",
+          "classes": [],
+          "icon": "add",
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "Admin User SysOp",
+          "classes": [],
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        }
+      ],
+      "inputs": [],
+      "navLinks": [
+        {
+          "kind": "link",
+          "label": "Operations",
+          "href": "#",
+          "classes": [
+            "ml-sm",
+            "font-label-xs",
+            "text-label-xs",
+            "whitespace-nowrap",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-200",
+            "uppercase"
+          ],
+          "icon": "dashboard",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Insights",
+          "href": "#",
+          "classes": [
+            "ml-sm",
+            "font-label-xs",
+            "text-label-xs",
+            "whitespace-nowrap",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-200",
+            "uppercase"
+          ],
+          "icon": "analytics",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Editor",
+          "href": "#",
+          "classes": [
+            "ml-sm",
+            "font-label-xs",
+            "text-label-xs",
+            "whitespace-nowrap",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-200",
+            "uppercase"
+          ],
+          "icon": "edit_note",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "settings",
+          "href": "#",
+          "classes": [
+            "ml-sm",
+            "font-label-xs",
+            "text-label-xs",
+            "whitespace-nowrap",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-200",
+            "uppercase"
+          ],
+          "icon": "settings",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Support",
+          "href": "#",
+          "classes": [
+            "ml-sm",
+            "font-label-xs",
+            "text-label-xs",
+            "whitespace-nowrap",
+            "opacity-0",
+            "group-hover:opacity-100",
+            "transition-opacity",
+            "duration-200",
+            "uppercase"
+          ],
+          "icon": "help_outline",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "dashboard",
+          "href": "#",
+          "classes": [],
+          "icon": "dashboard",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "analytics",
+          "href": "#",
+          "classes": [],
+          "icon": "analytics",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "edit_note",
+          "href": "#",
+          "classes": [],
+          "icon": "edit_note",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "help_outline",
+          "href": "#",
+          "classes": [],
+          "icon": "help_outline",
+          "action": "navigate",
+          "expectedBehavior": "navigate:#"
+        }
+      ],
+      "cards": [],
+      "icons": [
+        "dashboard",
+        "analytics",
+        "edit_note",
+        "add",
+        "settings",
+        "help_outline",
+        "notifications",
+        "account_tree",
+        "download",
+        "check_circle",
+        "error",
+        "timer",
+        "lightbulb",
+        "warning",
+        "arrow_forward",
+        "info",
+        "schedule",
+        "terminal"
+      ],
+      "images": [
+        {
+          "src": "https://lh3.googleusercontent.com/aida-public/AB6AXuC4pkzNB7-wqOBlsmeyZ2X42Pdp6eCez-Hqp8LyVD8kbs3T4fzZATg-KLAqE7Be5Wqn0BWZkbMmPgvigmFKDBctAaAVThGm6XYZIcv3aaU9vku005k4rZ2TrPrObv8zh8APEQ91KTQgKf53ErsdOb",
+          "alt": "User Profile"
+        },
+        {
+          "src": "https://lh3.googleusercontent.com/aida-public/AB6AXuAgezGlnLhoFLiLtjzgVkmbrjbEWlcI-JNcTLXkhX9Nm-HW1Gl0sEKUaipSIjRKNro3OkQ_q6YjNj2uhsFlhtDwT98DB8IdUNHLZgljtG_ugIGzT__mY1Eaz7SW6OqtOlKfDHJpE2gPKcx1OSyaZh",
+          "alt": "Operator Avatar"
+        }
+      ],
+      "cssVars": {},
+      "colorPalette": {
+        "on-primary": "#393000",
+        "tertiary-fixed-dim": "#00dce4",
+        "on-error-container": "#ffdad6",
+        "primary-fixed-dim": "#e2c62d",
+        "secondary-container": "#3a4a5f",
+        "surface-container-high": "#2d2a1f",
+        "secondary-fixed": "#d3e4fe",
+        "surface-container-lowest": "#100e06",
+        "on-primary-container": "#726300",
+        "outline": "#97917a",
+        "tertiary-fixed": "#59f8ff",
+        "inverse-surface": "#e9e2d2",
+        "primary-container": "#fde047",
+        "error-container": "#93000a",
+        "on-secondary-fixed": "#0b1c30",
+        "surface-tint": "#e2c62d",
+        "on-primary-fixed-variant": "#524600",
+        "on-error": "#690005",
+        "on-surface-variant": "#cec6ad",
+        "on-tertiary-fixed-variant": "#004f52",
+        "surface-container-low": "#1e1c12",
+        "on-secondary": "#213145",
+        "surface-variant": "#38352a",
+        "on-secondary-container": "#a9bad3",
+        "secondary-fixed-dim": "#b7c8e1",
+        "secondary": "#b7c8e1",
+        "on-primary-fixed": "#211b00",
+        "inverse-primary": "#6d5e00",
+        "tertiary-container": "#3bf7ff",
+        "outline-variant": "#4b4734",
+        "on-surface": "#e9e2d2",
+        "primary": "#fffcff",
+        "inverse-on-surface": "#333026",
+        "background": "#16130a",
+        "primary-fixed": "#ffe24c",
+        "error": "#ffb4ab",
+        "surface": "#16130a",
+        "surface-container": "#222016",
+        "on-background": "#e9e2d2",
+        "surface-container-highest": "#38352a",
+        "on-tertiary-container": "#006e72",
+        "surface-bright": "#3c392e",
+        "on-tertiary": "#003739",
+        "on-tertiary-fixed": "#002021",
+        "surface-dim": "#16130a",
+        "tertiary": "#f4ffff",
+        "on-secondary-fixed-variant": "#38485d"
+      },
+      "fonts": [
+        "Material Symbols Outlined",
+        "Inter",
+        "JetBrains Mono"
+      ],
+      "layoutHints": {
+        "gridCols": 1,
+        "flexDirection": "col",
+        "gap": "1"
+      },
+      "behaviorContract": [
+        {
+          "kind": "link",
+          "label": "Operations",
+          "icon": "dashboard",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Insights",
+          "icon": "analytics",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Editor",
+          "icon": "edit_note",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "settings",
+          "icon": "settings",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "Support",
+          "icon": "help_outline",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "dashboard",
+          "icon": "dashboard",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "analytics",
+          "icon": "analytics",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "edit_note",
+          "icon": "edit_note",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "link",
+          "label": "help_outline",
+          "icon": "help_outline",
+          "route": "#",
+          "expectedBehavior": "navigate:#"
+        },
+        {
+          "kind": "button",
+          "label": "Create Record",
+          "icon": "add",
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "notifications",
+          "icon": "notifications",
+          "action": "navigate",
+          "route": "/notifications",
+          "expectedBehavior": "navigate:/notifications"
+        },
+        {
+          "kind": "button",
+          "label": "account_tree",
+          "icon": "account_tree",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "Export Summary",
+          "icon": "download",
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "M",
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "ModuleStack Canary Ops",
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        },
+        {
+          "kind": "button",
+          "label": "add",
+          "icon": "add",
+          "action": "create",
+          "expectedBehavior": "open create flow or add a new item/state"
+        },
+        {
+          "kind": "button",
+          "label": "Admin User SysOp",
+          "icon": null,
+          "action": "click-action",
+          "expectedBehavior": "produce visible DOM/state/URL feedback; never empty onClick"
+        }
+      ],
+      "tabBar": [
+        {
+          "kind": "button",
+          "label": "M",
+          "icon": null,
+          "active": true
+        },
+        {
+          "kind": "button",
+          "label": "ModuleStack Canary Ops",
+          "icon": null,
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "dashboard",
+          "icon": "dashboard",
+          "route": "#",
+          "active": false
+        },
+        {
+          "kind": "link",
+          "label": "analytics",
+          "icon": "analytics",
+          "route": "#",
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "edit_note",
+          "icon": "edit_note",
+          "route": "#",
+          "active": false
+        },
+        {
+          "kind": "button",
+          "label": "add",
+          "icon": "add",
+          "active": true
+        },
+        {
+          "kind": "link",
+          "label": "settings",
+          "icon": "settings",
+          "route": "#",
+          "active": false
+        },
+        {
+          "kind": "link",
+          "label": "help_outline",
+          "icon": "help_outline",
+          "route": "#",
+          "active": false
+        },
+        {
+          "kind": "button",
+          "label": "Admin User SysOp",
+          "icon": null,
+          "active": false
+        }
+      ],
+      "title": "Insights - ModuleStack Canary"
+    }
+  }
+}

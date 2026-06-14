@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ModuleStack Canary - Record Operations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary": "#393000",
+                      "tertiary-fixed-dim": "#00dce4",
+                      "on-error-container": "#ffdad6",
+                      "primary-fixed-dim": "#e2c62d",
+                      "secondary-container": "#3a4a5f",
+                      "surface-container-high": "#2d2a1f",
+                      "secondary-fixed": "#d3e4fe",
+                      "surface-container-lowest": "#100e06",
+                      "on-primary-container": "#726300",
+                      "outline": "#97917a",
+                      "tertiary-fixed": "#59f8ff",
+                      "inverse-surface": "#e9e2d2",
+                      "primary-container": "#fde047",
+                      "error-container": "#93000a",
+                      "on-secondary-fixed": "#0b1c30",
+                      "surface-tint": "#e2c62d",
+                      "on-primary-fixed-variant": "#524600",
+                      "on-error": "#690005",
+                      "on-surface-variant": "#cec6ad",
+                      "on-tertiary-fixed-variant": "#004f52",
+                      "surface-container-low": "#1e1c12",
+                      "on-secondary": "#213145",
+                      "surface-variant": "#38352a",
+                      "on-secondary-container": "#a9bad3",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "secondary": "#b7c8e1",
+                      "on-primary-fixed": "#211b00",
+                      "inverse-primary": "#6d5e00",
+                      "tertiary-container": "#3bf7ff",
+                      "outline-variant": "#4b4734",
+                      "on-surface": "#e9e2d2",
+                      "primary": "#fffcff",
+                      "inverse-on-surface": "#333026",
+                      "background": "#16130a",
+                      "primary-fixed": "#ffe24c",
+                      "error": "#ffb4ab",
+                      "surface": "#16130a",
+                      "surface-container": "#222016",
+                      "on-background": "#e9e2d2",
+                      "surface-container-highest": "#38352a",
+                      "on-tertiary-container": "#006e72",
+                      "surface-bright": "#3c392e",
+                      "on-tertiary": "#003739",
+                      "on-tertiary-fixed": "#002021",
+                      "surface-dim": "#16130a",
+                      "tertiary": "#f4ffff",
+                      "on-secondary-fixed-variant": "#38485d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "md": "16px",
+                      "gutter": "12px",
+                      "xs": "4px",
+                      "sm": "8px",
+                      "lg": "24px",
+                      "xl": "32px",
+                      "margin": "16px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "headline-sm": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "display-sm": [
+                              "Inter"
+                      ],
+                      "label-xs": [
+                              "JetBrains Mono"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "data-mono": [
+                              "JetBrains Mono"
+                      ]
+              },
+              "fontSize": {
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-xs": [
+                              "11px",
+                              {
+                                      "lineHeight": "12px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-mono": [
+                              "13px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        /* Base styles from design system */
+        body {
+            background-color: #0F172A; /* Level 0 Canvas */
+            color: #e9e2d2;
+        }
+        
+        .panel-level-1 {
+            background-color: #1E293B;
+        }
+
+        .panel-level-2 {
+            background-color: #334155;
+            border: 1px solid #475569;
+        }
+
+        .border-slate {
+            border-color: #334155;
+        }
+
+        .canary-focus:focus-within {
+            border-color: #fde047 !important; /* Canary Yellow */
+            outline: none;
+            box-shadow: inset 0 0 0 1px #fde047;
+        }
+
+        /* Tonal depth, no shadows */
+        .no-shadow {
+            box-shadow: none;
+        }
+
+        /* Status glows */
+        .glow-error {
+            box-shadow: 0 0 8px 0 rgba(147, 0, 10, 0.2); /* error-container */
+        }
+        .glow-warning {
+            box-shadow: 0 0 8px 0 rgba(253, 224, 71, 0.2); /* primary-container */
+        }
+        
+        /* Table specifics */
+        .data-table-row {
+            height: 32px;
+            border-bottom: 1px solid #334155;
+        }
+        
+        /* Custom scrollbar for technical feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0F172A; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+
+        /* Utility for fixed nav spacing */
+        .pt-header {
+            padding-top: 48px; /* TopAppBar h-12 = 48px */
+        }
+        .pl-sidebar {
+            padding-left: 64px; /* SideNavBar w-16 = 64px */
+        }
+      </style>
+</head>
+<body class="font-body-md text-body-md antialiased overflow-hidden h-screen w-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- JSON Component: SideNavBar -->
+<nav class="bg-surface-container dark:bg-surface-container docked h-screen w-16 hover:w-64 transition-all duration-300 bg-surface-container-low border-r border-outline-variant flat no-shadows fixed left-0 top-0 h-full z-50 flex flex-col overflow-hidden group">
+<!-- Header / Logo area -->
+<div class="h-12 flex items-center px-4 border-b border-outline-variant shrink-0">
+<span class="material-symbols-outlined text-primary-container dark:text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">alarm</span>
+<div class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+<div class="font-headline-sm text-headline-sm font-bold text-primary-container dark:text-primary-fixed-dim">ModuleStack</div>
+<div class="font-label-xs text-label-xs text-on-surface-variant">Canary Ops</div>
+</div>
+</div>
+<!-- Main Tabs -->
+<div class="flex-1 py-4 flex flex-col gap-2">
+<!-- Active Tab: Operations -->
+<a class="flex items-center px-4 py-2 text-primary-container border-l-4 border-primary-container bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="dashboard">dashboard</span>
+<span class="ml-4 font-label-xs text-label-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Operations</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors border-l-4 border-transparent hover:border-outline-variant" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="analytics">analytics</span>
+<span class="ml-4 font-label-xs text-label-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Insights</span>
+</a>
+<a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors border-l-4 border-transparent hover:border-outline-variant" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="edit_note">edit_note</span>
+<span class="ml-4 font-label-xs text-label-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Editor</span>
+</a>
+</div>
+<!-- CTA Button (Visible on expansion) -->
+<div class="px-4 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<button class="w-full bg-primary-container text-on-primary-container font-label-xs text-label-xs py-2 rounded flex items-center justify-center gap-2 hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                Create Record
+            </button>
+</div>
+<!-- Footer Tabs -->
+<div class="pb-4 flex flex-col gap-2 border-t border-outline-variant pt-4">
+<a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="settings">settings</span>
+<span class="ml-4 font-label-xs text-label-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Settings</span>
+</a>
+<a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="help_outline">help_outline</span>
+<span class="ml-4 font-label-xs text-label-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Support</span>
+</a>
+</div>
+<!-- User Avatar -->
+<div class="px-4 pb-4 flex items-center">
+<img alt="User Profile" class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant shrink-0" data-alt="A small, professional headshot photo of an engineer in a dimly lit server room setting, cool blue tones, highly detailed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnCq-ZaG1MpdixY5Vu7m5VGUZnUJzsSwD2C9bbFefBTo0DVg2Wd4F5Gp98j08yQph9a0FJQwx3vB8eZoXlULrz9V1rV7JlxslhCOWEcNsqGfe7vsffLNdalYpXWzhnhmaPY5cInHseNKEEU73z4JBwgloFxIbRGSSxmQ1teTcBd-JekGuzoEsA7HrSUGxvfOmcTkisBUUWek713BTqXKTaCmSyXt71pcUhubk9_0os2WlazCQ16aOkph1o4HqSV2ZEofVTWeivwRM"/>
+</div>
+</nav>
+<!-- JSON Component: TopAppBar -->
+<header class="bg-surface dark:bg-surface docked full-width top-0 h-12 border-b border-outline-variant bg-surface-container-low flat no-shadows fixed top-0 right-0 left-16 z-40 flex items-center justify-between px-gutter pl-sidebar transition-all duration-300" id="top-app-bar">
+<!-- Search Bar (on_left) -->
+<div class="flex-1 flex items-center">
+<div class="relative w-64 panel-level-1 rounded border border-slate canary-focus flex items-center h-8 px-2 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">search</span>
+<input class="bg-transparent border-none text-body-sm font-body-sm text-on-surface w-full focus:ring-0 placeholder:text-on-surface-variant h-full py-0" placeholder="Search operations..." type="text"/>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<!-- Icon Actions -->
+<div class="flex items-center gap-2">
+<button class="text-on-surface-variant hover:text-primary-container transition-colors w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-highest">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary-container transition-colors w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-highest relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full glow-error"></span>
+</button>
+</div>
+<!-- Secondary Action -->
+<button class="font-label-xs text-label-xs text-on-surface-variant border border-outline-variant px-3 py-1.5 rounded hover:bg-surface-container-highest transition-colors">
+                Export Summary
+            </button>
+<!-- Primary Action -->
+<button class="font-label-xs text-label-xs bg-primary-container text-on-primary-container px-3 py-1.5 rounded hover:bg-primary-fixed transition-colors font-bold">
+                Create Record
+            </button>
+<!-- Operator Avatar -->
+<img alt="Operator Avatar" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A small, professional headshot photo of an engineer in a dimly lit server room setting, cool blue tones, highly detailed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzmB60K64fIg0gI8BWya5W6m-AOtAI_8NMbZQMhV0vxcrbwZdCql7qDkOa5wurx_noQhTnduNqK3V2N8pT1r7sdm8yGFZaUw_XdMsF1LVCmI6LKTs71zPi4dzI1EUezf7FAl4qKXfYLcmI0YkjG1odjHtgIlE2b1PzPRn08SwPDnL668UzCZhiiiQ9O1dBHBroTrvpYa-d9MnvXkvRIb6gsaJ7PH6OsGUnFH-whYsDsDMt9b0T8Oq-slS16KfvDIwiNaTL8PSmYsc"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="h-full pt-header pl-sidebar flex transition-all duration-300" id="main-content">
+<!-- Left Section: Data & Metrics (Fluid) -->
+<div class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- Metric Cards (Top Section) -->
+<div class="grid grid-cols-4 gap-gutter p-gutter shrink-0">
+<!-- Card 1 -->
+<div class="panel-level-1 rounded p-3 border border-slate flex flex-col gap-1 relative overflow-hidden">
+<div class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">Total Modules</div>
+<div class="font-data-mono text-display-sm text-on-surface">1,248</div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-surface-container-high">
+<div class="h-full bg-primary-container w-[100%]"></div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="panel-level-1 rounded p-3 border border-error-container glow-error flex flex-col gap-1 relative overflow-hidden">
+<div class="font-label-xs text-label-xs text-error uppercase tracking-wider flex items-center justify-between">
+                        Failing Modules
+                        <span class="material-symbols-outlined text-[14px]">warning</span>
+</div>
+<div class="font-data-mono text-display-sm text-error">12</div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-surface-container-high">
+<div class="h-full bg-error w-[12%]"></div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="panel-level-1 rounded p-3 border border-slate flex flex-col gap-1 relative overflow-hidden">
+<div class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">Avg Build Time</div>
+<div class="font-data-mono text-display-sm text-on-surface">4m 12s</div>
+<div class="w-full h-4 mt-1 opacity-50">
+<!-- Placeholder for Sparkline -->
+<div class="w-full h-full border-b border-primary-container border-dashed"></div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="panel-level-1 rounded p-3 border border-slate flex flex-col gap-1 relative overflow-hidden">
+<div class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">System Health</div>
+<div class="font-data-mono text-display-sm text-tertiary-container">99.8%</div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-surface-container-high">
+<div class="h-full bg-tertiary-container w-[99.8%]"></div>
+</div>
+</div>
+</div>
+<!-- Dense Data Table -->
+<div class="flex-1 overflow-auto px-gutter pb-gutter">
+<div class="w-full border border-slate rounded bg-[#0F172A] overflow-hidden">
+<!-- Header -->
+<div class="grid grid-cols-6 gap-2 px-3 py-2 bg-[#1E293B] font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider border-b border-slate sticky top-0 z-10">
+<div class="col-span-1">Module Name</div>
+<div class="col-span-1">Ownership</div>
+<div class="col-span-1">Build Status</div>
+<div class="col-span-1">Test Cov.</div>
+<div class="col-span-1">Fail Route</div>
+<div class="col-span-1 text-right">Last Note</div>
+</div>
+<!-- Rows Container -->
+<div class="font-data-mono text-data-mono text-on-surface">
+<!-- Row 1: Success -->
+<div class="grid grid-cols-6 gap-2 px-3 items-center data-table-row hover:bg-[#1E293B] cursor-pointer transition-colors" onclick="togglePreviewPanel('module-auth')">
+<div class="col-span-1 truncate text-tertiary-fixed-dim">auth-service-v2</div>
+<div class="col-span-1 truncate text-on-surface-variant">Team Phoenix</div>
+<div class="col-span-1 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Success</span>
+</div>
+<div class="col-span-1 text-on-surface-variant">94.2%</div>
+<div class="col-span-1 text-on-surface-variant text-opacity-50">N/A</div>
+<div class="col-span-1 truncate text-right text-on-surface-variant">Auto-recovered 2h ago</div>
+</div>
+<!-- Row 2: Failure -->
+<div class="grid grid-cols-6 gap-2 px-3 items-center data-table-row bg-[rgba(147,0,10,0.1)] hover:bg-[rgba(147,0,10,0.2)] cursor-pointer transition-colors border-l-2 border-l-error" onclick="togglePreviewPanel('module-payment')">
+<div class="col-span-1 truncate text-error font-bold">payment-gateway-prd</div>
+<div class="col-span-1 truncate text-on-surface-variant">Team Dragon</div>
+<div class="col-span-1 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error glow-error"></span>
+<span class="text-error">Failure</span>
+</div>
+<div class="col-span-1 text-on-surface-variant">88.1%</div>
+<div class="col-span-1 text-primary-container border border-primary-container px-1 py-0.5 rounded text-[10px] inline-block w-max">Fallback-DB-B</div>
+<div class="col-span-1 truncate text-right text-on-surface-variant">Timeout on commit</div>
+</div>
+<!-- Row 3: In Progress -->
+<div class="grid grid-cols-6 gap-2 px-3 items-center data-table-row hover:bg-[#1E293B] cursor-pointer transition-colors" onclick="togglePreviewPanel('module-cache')">
+<div class="col-span-1 truncate text-primary-container">cache-layer-redis</div>
+<div class="col-span-1 truncate text-on-surface-variant">Infra Ops</div>
+<div class="col-span-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-primary-container animate-spin">sync</span>
+<span class="text-primary-container">Building</span>
+</div>
+<div class="col-span-1 text-on-surface-variant">99.9%</div>
+<div class="col-span-1 text-on-surface-variant text-opacity-50">N/A</div>
+<div class="col-span-1 truncate text-right text-on-surface-variant">Scaling cluster...</div>
+</div>
+<!-- Row 4: Success -->
+<div class="grid grid-cols-6 gap-2 px-3 items-center data-table-row hover:bg-[#1E293B] cursor-pointer transition-colors">
+<div class="col-span-1 truncate text-tertiary-fixed-dim">user-profile-api</div>
+<div class="col-span-1 truncate text-on-surface-variant">Team Phoenix</div>
+<div class="col-span-1 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Success</span>
+</div>
+<div class="col-span-1 text-on-surface-variant">91.0%</div>
+<div class="col-span-1 text-on-surface-variant text-opacity-50">N/A</div>
+<div class="col-span-1 truncate text-right text-on-surface-variant">No issues detected</div>
+</div>
+<!-- Generate more rows to show density -->
+<script>
+                            const tbody = document.currentScript.parentElement;
+                            const statuses = [
+                                { label: 'Success', color: 'bg-tertiary-container', textColor: 'text-tertiary-container', nameColor: 'text-tertiary-fixed-dim' },
+                                { label: 'Building', color: 'bg-primary-container', textColor: 'text-primary-container', nameColor: 'text-primary-container' }
+                            ];
+                            for(let i=0; i<15; i++) {
+                                const st = statuses[Math.floor(Math.random() * statuses.length)];
+                                const html = `
+                                <div class="grid grid-cols-6 gap-2 px-3 items-center data-table-row hover:bg-[#1E293B] cursor-pointer transition-colors">
+                                    <div class="col-span-1 truncate ${st.nameColor}">module-batch-${i+10}</div>
+                                    <div class="col-span-1 truncate text-on-surface-variant">Data Eng</div>
+                                    <div class="col-span-1 flex items-center gap-2">
+                                        ${st.label === 'Building' ? `<span class="material-symbols-outlined text-[14px] ${st.textColor} animate-spin">sync</span>` : `<span class="w-2 h-2 rounded-full ${st.color}"></span>`}
+                                        <span class="${st.textColor}">${st.label}</span>
+                                    </div>
+                                    <div class="col-span-1 text-on-surface-variant">${(80 + Math.random()*19).toFixed(1)}%</div>
+                                    <div class="col-span-1 text-on-surface-variant text-opacity-50">N/A</div>
+                                    <div class="col-span-1 truncate text-right text-on-surface-variant">-</div>
+                                </div>`;
+                                document.write(html);
+                            }
+                        </script>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Section: Selected Item Preview Panel (Hidden by default, triggered by JS) -->
+<aside class="w-96 panel-level-2 border-l border-slate h-full flex flex-col translate-x-full transition-transform duration-300 absolute right-0 top-header bottom-0 z-30" id="preview-panel" style="top: 48px; height: calc(100vh - 48px);">
+<!-- Panel Header -->
+<div class="p-4 border-b border-slate flex justify-between items-start bg-[#1E293B]">
+<div>
+<div class="font-label-xs text-label-xs text-error uppercase tracking-wider mb-1" id="preview-status">CRITICAL FAILURE</div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface" id="preview-title">payment-gateway-prd</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-1 text-[11px]">ID: req-9f8a-4b2c</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="closePreviewPanel()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Panel Content -->
+<div class="flex-1 overflow-auto p-4 space-y-6 bg-[#0F172A]">
+<!-- Pipeline Metadata -->
+<div>
+<h3 class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider border-b border-slate pb-1 mb-2">Pipeline Metadata</h3>
+<div class="grid grid-cols-2 gap-y-2 font-data-mono text-[12px]">
+<div class="text-on-surface-variant">Commit:</div>
+<div class="text-on-surface text-right truncate">a1b2c3d4</div>
+<div class="text-on-surface-variant">Triggered By:</div>
+<div class="text-on-surface text-right">auto-scaler</div>
+<div class="text-on-surface-variant">Duration:</div>
+<div class="text-on-surface text-right">00:14:05</div>
+<div class="text-on-surface-variant">Node:</div>
+<div class="text-on-surface text-right">worker-04-eu</div>
+</div>
+</div>
+<!-- Terminal / Log Output -->
+<div>
+<h3 class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider border-b border-slate pb-1 mb-2">Tail Logs</h3>
+<div class="bg-[#020617] p-2 rounded border border-slate font-data-mono text-[11px] leading-tight overflow-x-auto h-32 text-on-surface-variant">
+<div class="text-on-surface-variant">[14:01:22] Starting pre-flight checks... OK</div>
+<div class="text-on-surface-variant">[14:01:25] Pulling configuration from vault... OK</div>
+<div class="text-on-surface-variant">[14:02:10] Compiling main dependencies... OK</div>
+<div class="text-primary-container">[14:04:00] WARN: Deprecated API call detected in lib/pay.js</div>
+<div class="text-error font-bold mt-1">[14:05:01] FATAL: Timeout on DB commit transaction.</div>
+<div class="text-error">[14:05:01] Stack trace:</div>
+<div class="text-error pl-2">at Transaction.commit (db/conn.js:42)</div>
+<div class="text-error pl-2">at Process.tick (node:internal)</div>
+<div class="text-on-surface-variant mt-1">[14:05:02] Initiating Failure Routing fallback...</div>
+</div>
+</div>
+<!-- Activity Events Timeline -->
+<div>
+<h3 class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider border-b border-slate pb-1 mb-4">Activity Events</h3>
+<div class="relative pl-4 border-l border-slate space-y-4 font-data-mono text-[11px]">
+<!-- Event 1 -->
+<div class="relative">
+<div class="absolute -left-[21px] w-2 h-2 rounded-full bg-error ring-4 ring-[#0F172A] mt-1"></div>
+<div class="text-error font-bold">Build Failed</div>
+<div class="text-on-surface-variant">System halted build process</div>
+<div class="text-on-surface-variant opacity-50 mt-1">14:05:01 UTC</div>
+</div>
+<!-- Event 2 -->
+<div class="relative">
+<div class="absolute -left-[21px] w-2 h-2 rounded-full bg-primary-container ring-4 ring-[#0F172A] mt-1"></div>
+<div class="text-primary-container">Warning Logged</div>
+<div class="text-on-surface-variant">Deprecated API usage detected</div>
+<div class="text-on-surface-variant opacity-50 mt-1">14:04:00 UTC</div>
+</div>
+<!-- Event 3 -->
+<div class="relative">
+<div class="absolute -left-[21px] w-2 h-2 rounded-full bg-tertiary-container ring-4 ring-[#0F172A] mt-1"></div>
+<div class="text-tertiary-fixed-dim">Build Started</div>
+<div class="text-on-surface-variant">Triggered by auto-scaler rule</div>
+<div class="text-on-surface-variant opacity-50 mt-1">14:01:22 UTC</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Footer Actions -->
+<div class="p-4 border-t border-slate bg-[#1E293B] flex gap-2">
+<button class="flex-1 bg-surface border border-slate text-on-surface font-label-xs text-label-xs py-2 rounded hover:bg-surface-container-high transition-colors">Acknowledge</button>
+<button class="flex-1 bg-primary-container text-on-primary-container font-label-xs text-label-xs py-2 rounded hover:bg-primary-fixed transition-colors font-bold">Force Retry</button>
+</div>
+</aside>
+</main>
+<!-- Micro-interactions Script -->
+<script>
+        const nav = document.querySelector('nav');
+        const mainContent = document.getElementById('main-content');
+        const topAppBar = document.getElementById('top-app-bar');
+        const previewPanel = document.getElementById('preview-panel');
+        
+        // Handle SideNav Expansion adjusting main content margin
+        nav.addEventListener('mouseenter', () => {
+            // In a real app, might want to push content, but overlay is often preferred in dense tools to avoid layout shifting.
+            // For now, let it overlay.
+        });
+
+        function togglePreviewPanel(moduleId) {
+            // In a real app, fetch data based on moduleId
+            // Here we just slide it in
+            previewPanel.classList.remove('translate-x-full');
+            // Adjust main content width to accommodate panel
+            mainContent.style.paddingRight = '384px'; // 96 * 4 (w-96)
+        }
+
+        function closePreviewPanel() {
+            previewPanel.classList.add('translate-x-full');
+            mainContent.style.paddingRight = '0';
+        }
+    </script>
+</body></html>
